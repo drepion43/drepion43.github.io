@@ -1,7 +1,7 @@
 ---
 title: "OperatingSystem"
 layout: archive
-permalink: /categories/OS
+permalink: categories/OS
 author_profile: true
 sidebar_main: true
 ---
