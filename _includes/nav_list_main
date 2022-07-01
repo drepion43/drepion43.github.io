@@ -34,28 +34,28 @@
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "statistics" %}
-                        <li><a href="/categories/statistics" class="">statistics ({{category[1].size}})</a></li>
+                        <li><a href="/categories/statistics" class="">통계 ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "LinearAlgebra" %}
-                        <li><a href="/categories/LinearAlgebra" class="">LinearAlgebra ({{category[1].size}})</a></li>
+                        <li><a href="/categories/LinearAlgebra" class="">선형대수 ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "paper" %}
-                        <li><a href="/categories/paper" class="">paper ({{category[1].size}})</a></li>
+                        <li><a href="/categories/paper" class="">논문 ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "experiment" %}
-                        <li><a href="/categories/experiment" class="">experiment ({{category[1].size}})</a></li>
+                        <li><a href="/categories/experiment" class="">실습,구현 ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
@@ -64,7 +64,7 @@
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "test" %}
-                        <li><a href="/categories/test" class="">Test ({{category[1].size}})</a></li>
+                        <li><a href="/categories/test" class="">알쓸신작 ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
