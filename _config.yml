@@ -16,9 +16,9 @@ minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "
 
 # Site Settings
 locale                   : "ko-KR"
-title                    : "drepion43"
+title                    : "공부하는 벌레:I want to learn new knowledge everyday"
 title_separator          : "|"
-subtitle                 : "My record"
+subtitle                 : ""
 name                     : "drepion43"
 description              : "This is drepion43's blog."
 url                      : "https://drepion43.github.io"
