@@ -27,11 +27,13 @@ use_math: true
 
 ![베르누이1](../../../assets/images/statistics/2023-10-20-Bern and Binary/베르누이1-16978805813606.jpg)
 
-### 기댓값과 분산
+### 통계량
 
 ![베르누이2](../../../assets/images/statistics/2023-10-20-Bern and Binary/베르누이2.jpg)
 
 ### 그래프
+
+PMF
 
 ![베르누이3](../../../assets/images/statistics/2023-10-20-Bern and Binary/베르누이3.jpg)
 
@@ -45,8 +47,10 @@ use_math: true
 ### 이항 분포 확률 분포
 
 ![이항 1](../../../assets/images/statistics/2023-10-20-Bern and Binary/이항 1.jpg)   
-### 기댓값 분산
+### 통계량
 
 ![이항 2](../../../assets/images/statistics/2023-10-20-Bern and Binary/이항 2.jpg)
 
-X~B(n, p)는 모든 확률에 대한 합이니, 확률의 합은 항상 1이 된다.   
+X~B(n, p)는 모든 확률에 대한 합이니, 확률의 합은 항상 1이 된다.    
+여기서 이항 분포의 경우 확률 p는 그래프의 볼록한 위치에 영향을 주고, 시행 횟수 n은 볼록한 부분의 폭에 영향을 준다.
+
