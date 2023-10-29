@@ -14,7 +14,7 @@ use_math: true
 
 **모집단이 유한**하며, 크기가 m인 모집단에 원하는 k개의 원소가 있을 때, n개의 표본을 **비복원 추출**할 때, 표본 집단에 원하는 원소 x개가 될 때의 확률 분포이다.
 
-### 초기하 분포 확률 변수
+### 초기하 분포 확률 질량 함수
 
 ![hyper geometric1](../../../assets/images/statistics/2023-10-26-Hyper Geometric/hyper geometric1.jpg)   
 여기서 $x$의 최댓값은 n과 k 중 작은 값인 min(n, k)가 되며, $x$의 최솟값은 max(0, n-m+k)이 된다. 즉, $x$의 값은 $max(0, n-m+k) \le x \le min(n,k)$의 값을 가진다.  따라서, 초기화 분포는 총 m, k, n 3개의 모수(parameter)를 가지는 확률 질량 함수(pmf)로 나타낼 수 있다.

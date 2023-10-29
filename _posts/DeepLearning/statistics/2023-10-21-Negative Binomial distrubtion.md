@@ -14,7 +14,7 @@ use_math: true
 
 음이항 분포는 **기하 분포의 확장**이라고 볼 수 있다. 기하 분포는 성공할 확률이 $p$인 베르누이 시행을 **1번**성공할 때까지 시행한다. 하지만, 음이항 분포는 베르누이 시행을 **r번** 성공할 때까지 시행하는 경우에 대한 시행(실패) 횟수의 분포이다.
 
-### 음이항 분포 확률 변수
+### 음이항 분포 확률 질량 함수
 
 ![negativebinary1](../../../assets/images/statistics/2023-10-21-Negative Binomial distrubtion/negativebinary1.jpg)
 

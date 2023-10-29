@@ -15,7 +15,7 @@ use_math: true
 기하분포는 이산 확률 분포이며, **첫번째 성공이 일어날 때까지 시행하는 경우에 대한 시행(실패) 횟수 분포**이다.   
 기하 분포는 이전에 다뤘던 베르누이 분포와 매우 밀접한 관련이 있다. 
 
-### 기하 분포 확률 변수
+### 기하 분포 확률 질량 함수
 
 ![Geodistrubtion1](../../../assets/images/statistics/2023-10-21-Geometric distrubtion/Geodistrubtion1.jpg)
 
