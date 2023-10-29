@@ -14,7 +14,7 @@ use_math: true
 
 표본 공간에 있는 원소를 실수로 대응시키는 함수이다. 실생활에서 일어나는 어떤 사건을 실수로 대응시켜주는 함수라고 생각할 수 있다.   
 예를 들어, 3개의 동전에서 동전 던지기를 할 때, 확률 변수는 앞면이 나오는 횟수라고 하면 \{0, 1, 2, 3\} 총 4가지가 될 수 있다.   
-그림   
+   ![RV](../../../assets/images/statistics/2023-10-27-Basic Concept2/RV.jpg)
 
 ### 이산형 확률 변수
 
@@ -30,12 +30,12 @@ use_math: true
 
 확률 변수의 실수를 확률로 변경해주는 함수이다.   
 이산 확률 변수는 **pmf**, 연속 확률 변수는 **pdf**로 변경해준다.    
-그림
+![probabilty function](../../../assets/images/statistics/2023-10-27-Basic Concept2/probabilty function.jpg)
 
 ### PMF(Probability Mass Function)
 
 Random Variable이 **이산 확률 변수**이다.    
-그림   
+![pmf](../../../assets/images/statistics/2023-10-27-Basic Concept2/pmf.jpg)   
 상기의 이미지와 같은 형태의 그래프를 가진다.   
 $p(x) = P(X=x)$이며, ①$0 \le p(x) \le 1$ ② $\sum p(x) = 1$을 만족한다.   
 이제 통계량에 대해 설명하겠다.   
@@ -59,8 +59,8 @@ $V(X)=E\[(X - E(X))^2\] = E(X^2) - \(E(X)\)^2$
 ### PDF(Probability Dense Function)
 
 Random Variable이 **연속 확률 변수**이다.   
-확률 변수는 보통 범위로 주어지기도 한다.(e.g. (0, 1), [0, 1), [0, 1], (-$\infty$, $\infty$))   
-그림   
+확률 변수는 보통 범위로 주어지기도 한다.(e.g. (0, 1), [0, 1), [0, 1], (-$\infty$, $\infty$))    
+![pdf](../../../assets/images/statistics/2023-10-27-Basic Concept2/pdf-1698592111800-6.jpg)   
 상기의 이미지와 같은 형태의 그래프를 가진다.   
 $p(a \le x \le b)=\int_{a}^{b} f(x) dx$   
 $p(X=a)=p(a \le x \le a) = \int_{a}^{a}f(x)dx = 0$    
@@ -70,4 +70,11 @@ $p(a - \frac{\epsilon}{2} \le x \le a + \frac{\epsilon}{2}) = \int{a - \frac{\ep
 
 #### CDF(Cumulate Dense Function)
 
- 
+cdf는 **pdf의 적분값**이며, cdf의 미분은 pdf이다.   
+$F(x)=p(X \le x) = \omt_{- \infty}^{x}f(t) dt$   
+$\frac{d}{dx}F(x) = f(x)$   
+$0 \le F(x) \le 1$   
+$b \ge a$라면, $F(b) \ge F(a)$이니, CDF는 **단조 증가 함수**이다.  
+![cdf](../../../assets/images/statistics/2023-10-27-Basic Concept2/cdf.jpg)  
+상기의 PDF에서 나타낸 확률과 동일하다. &rarr; $F(b) - F(a) = p(a \le x \le b) = \int_{a}^{b} f(x) dx$이다.     
+만약에, $p(a \le x \le b)$를 구한다고 하면, $p(a \le x \le b) = p(x \le b) - p(x \le a) = \int_{- \infty}^{b} f(x) dx - \int_{- \infty}^{a} f(x) dx$로 구할 수 있다.   
