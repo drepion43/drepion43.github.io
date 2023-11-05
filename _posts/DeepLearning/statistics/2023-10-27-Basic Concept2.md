@@ -71,7 +71,7 @@ $p(a - \frac{\epsilon}{2} \le x \le a + \frac{\epsilon}{2}) = \int{a - \frac{\ep
 #### CDF(Cumulate Dense Function)
 
 cdf는 **pdf의 적분값**이며, cdf의 미분은 pdf이다.   
-$F(x)=p(X \le x) = \omt_{- \infty}^{x}f(t) dt$   
+$F(x)=p(X \le x) = \int_{- \infty}^{x}f(t) dt$   
 $\frac{d}{dx}F(x) = f(x)$   
 $0 \le F(x) \le 1$   
 $b \ge a$라면, $F(b) \ge F(a)$이니, CDF는 **단조 증가 함수**이다.  
