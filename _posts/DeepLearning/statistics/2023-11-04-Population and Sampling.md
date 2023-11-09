@@ -54,7 +54,7 @@ $V(\bar{X}) = \sum_{i=1}^{n} \bar{X_i^2} x \frac{A_i}{A_T} - \mu^2$
 모수(parameter)가 ($\mu, \sigma^2$)인 모집단에서 표본을 **비복원** 추출했습니다. 이 때, 표본들의 평균은 $\bar{X}= \frac{\sum_{i=1}^{n} x_i}{n}$이 됩니다.   
 이 표본들의 평균은 $\bar{X_1}, \bar{X_2}, ...$들의 평균입니다. 이제 각 표본1, 표본2들에 대해 살펴보겠습니다.   
 <img src="../../../assets/images/statistics/2023-11-04-Population and Sampling/sample3.jpg" alt="sample3" style="zoom:80%;" />   
-표본1의 표본들은 $x_1^1, x_2^1, x_3^1, ... , x_n^1$로 표현했습니다. 즉, 표본1은 $x^1_n$의 집합들입니다. 표본1의 평균을 구해보겠습니다. 표본1의 평균은 $\bar{X_1} = \frac{\sum_{i=1}^{n} x_i^1}{n}$이 됩니다. 이와 똑같이 표본k 등 무한정의 표본들이 존재한다고 해보겠습니다.   
+표본1의 표본들은 $x_1^1, x_2^1, x_3^1, ... , x_n^1$로 표현했습니다. 즉, 표본1은 $x^1$의 집합들입니다. 표본1의 평균을 구해보겠습니다. 표본1의 평균은 $\bar{X_1} = \frac{\sum_{i=1}^{n} x_i^1}{n}$이 됩니다. 이와 똑같이 표본k 등 무한정의 표본들이 존재한다고 해보겠습니다.   
 그럼 모집단에 추출한 표본들 중에 $x_1^k$인 표본들의 대표를 $x_1$라고 해보겠습니다. 그러면 자연스럽게 $x_n$인 대표까지 생성되며, 표본 평균의 대표인 $\bar{X}$로 설정해보겠습니다. 그러면 $\bar{X}=\frac{\sum_{i=1}^{n} x_i}{n}$이 됩니다. 하기와 같이 설정하겠습니다.    
 <img src="../../../assets/images/statistics/2023-11-04-Population and Sampling/sample4.jpg" alt="sample4" style="zoom:80%;" />
 
