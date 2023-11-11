@@ -4,10 +4,14 @@ categories: statistics
 tag: [DeepLearning,theory, python,statistics,math]
 tags: [Jekyll, MathJax]
 toc: true
+toc_sticky: true
 author_profile: false
 sidebar:
     nav: "docs"
 use_math: true
+excerpt: 베르누이 분포와 이항 분포에 대한 정리
+comments: true
+date: 2023-10-20
 ---
 
 ## 베르누이 분포

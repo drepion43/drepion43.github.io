@@ -6,6 +6,7 @@ toc: true
 author_profile: false
 sidebar:
     nav: "docs"
+excerpt: "안녕" 
 ---
 
 # Welcome to my blog
