@@ -8,6 +8,10 @@ author_profile: false
 sidebar:
     nav: "docs"
 use_math: true
+excerpt: 통계를 위한 사전 지식
+comments: true
+date: 2023-10-27
+toc_sticky: true
 ---
 
 ## 순열

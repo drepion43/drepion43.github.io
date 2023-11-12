@@ -8,6 +8,10 @@ author_profile: false
 sidebar:
     nav: "docs"
 use_math: true
+excerpt: 균등 분포에 대한 정리
+comments: true
+date: 2023-10-28
+toc_sticky: true
 ---
 
 ## 균등 분포

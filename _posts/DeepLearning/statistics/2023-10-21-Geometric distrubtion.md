@@ -8,6 +8,10 @@ author_profile: false
 sidebar:
     nav: "docs"
 use_math: true
+excerpt: 기하 분포에 대한 정리
+comments: true
+date: 2023-10-21
+toc_sticky: true
 ---
 
 ## 기하 분포

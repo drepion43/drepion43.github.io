@@ -8,6 +8,10 @@ author_profile: false
 sidebar:
     nav: "docs"
 use_math: true
+excerpt: 테일러 급수란?
+comments: true
+date: 2023-11-03
+toc_sticky: true
 ---
 
 ## 테일러 급수(Talyer's series)

@@ -8,6 +8,10 @@ author_profile: false
 sidebar:
     nav: "docs"
 use_math: true
+excerpt: 수리 통계1의 내용 정리
+comments: true
+date: 2023-11-09
+toc_sticky: true
 ---
 
 ## 조건부 분포

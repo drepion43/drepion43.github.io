@@ -8,6 +8,10 @@ author_profile: false
 sidebar:
     nav: "docs"
 use_math: true
+excerpt: 초기하 분포에 대한 정리
+comments: true
+date: 2023-10-26
+toc_sticky: true
 ---
 
 ## 초기하 분포

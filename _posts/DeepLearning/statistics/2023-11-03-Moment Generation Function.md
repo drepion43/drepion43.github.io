@@ -8,6 +8,10 @@ author_profile: false
 sidebar:
     nav: "docs"
 use_math: true
+excerpt: 적률 생성 함수 설명
+comments: true
+date: 2023-11-03
+toc_sticky: true
 ---
 
 ## 적률(Moment)

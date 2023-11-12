@@ -8,6 +8,10 @@ author_profile: false
 sidebar:
     nav: "docs"
 use_math: true
+excerpt: 중심 극한 정리의 개념 및 증명 정리
+comments: true
+date: 2023-11-03
+toc_sticky: true
 ---
 
 ## 중심 극한 정리(Central Limit Theorem)

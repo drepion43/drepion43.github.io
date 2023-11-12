@@ -8,6 +8,10 @@ author_profile: false
 sidebar:
     nav: "docs"
 use_math: true
+excerpt: 정규 분포 유도 및 정리
+comments: true
+date: 2023-11-04
+toc_sticky: true
 ---
 
 ## 정규 분포

@@ -8,6 +8,10 @@ author_profile: false
 sidebar:
     nav: "docs"
 use_math: true
+excerpt: 순서 통계량이란?
+comments: true
+date: 2023-11-07
+toc_sticky: true
 ---
 
 ## 순서 통계량

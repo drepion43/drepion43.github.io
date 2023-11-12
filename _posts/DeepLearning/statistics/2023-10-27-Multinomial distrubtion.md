@@ -8,6 +8,10 @@ author_profile: false
 sidebar:
     nav: "docs"
 use_math: true
+excerpt: 다항 분포에 대한 정리
+comments: true
+date: 2023-10-27
+toc_sticky: true
 ---
 
 ## 다항 분포

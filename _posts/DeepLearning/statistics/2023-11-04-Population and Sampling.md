@@ -8,6 +8,10 @@ author_profile: false
 sidebar:
     nav: "docs"
 use_math: true
+excerpt: 표본 집단에 대한 설명
+comments: true
+date: 2023-11-04
+toc_sticky: true
 ---
 
 ## 자유도와 비편향추정량
