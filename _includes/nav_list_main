@@ -30,15 +30,36 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-        <span class="nav__sub-title">Programming</span>
+        <span class="nav__sub-title">AI</span>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "Coding" %}
-                        <li><a href="/categories/Coding" class="">코딩 ({{category[1].size}})</a></li>
+                    {% if category[0] == "DeepLearning" %}
+                        <li><a href="/categories/DeepLearning" class="">DeepLearning ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
-        <span class="nav__sub-title">DeepLearning</span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "MachineLearning" %}
+                        <li><a href="/categories/MachineLearning" class="">MachineLearning ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "paper" %}
+                        <li><a href="/categories/paper" class="">논문 ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "implementation" %}
+                        <li><a href="/categories/implementation" class="">실습 및 구현 ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        <span class="nav__sub-title">AI Math</span>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "statistics" %}
@@ -55,19 +76,27 @@
             </ul>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "paper" %}
-                        <li><a href="/categories/paper" class="">논문 ({{category[1].size}})</a></li>
+                    {% if category[0] == "MathematicalConcepts" %}
+                        <li><a href="/categories/MathematicalConcepts" class="">수학 개념 ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
+        <span class="nav__sub-title">Programming</span>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "experiment" %}
-                        <li><a href="/categories/experiment" class="">실습,구현 ({{category[1].size}})</a></li>
+                    {% if category[0] == "Coding" %}
+                        <li><a href="/categories/Coding" class="">코테 문제({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
-
+        <span class="nav__sub-title">Server</span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Linux" %}
+                        <li><a href="/categories/Linux" class="">Linux ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         <span class="nav__sub-title">Blog</span>
             <ul>
                 {% for category in site.categories %}

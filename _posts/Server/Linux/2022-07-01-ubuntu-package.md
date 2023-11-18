@@ -1,11 +1,16 @@
 ---
 title:  "Ubuntu 간단한 패키지 설치"
-categories: test
+categories: Linux
 tag: [linux, ubuntu]
 toc: true
 author_profile: false
 sidebar:
     nav: "docs"
+use_math: true
+excerpt: Package install
+comments: true
+date: 2022-07-01
+toc_sticky: true
 ---
 
 ```python

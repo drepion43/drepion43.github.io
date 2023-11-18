@@ -1,6 +1,6 @@
 ---
 title:  "극좌표계"
-categories: test
+categories: MathematicalConcepts
 tag: [theory, math]
 tags: [Jekyll, MathJax]
 toc: true

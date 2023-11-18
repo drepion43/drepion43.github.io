@@ -1,11 +1,15 @@
 ---
 title:  "Introduction"
 categories: LinearAlgebra
-tag: [DeepLearning,theory, python,LinearAlgebra,math]
+tag: [theory, math]
 toc: true
 author_profile: false
 sidebar:
     nav: "docs"
+use_math: true
+comments: true
+date: 2022-07-01
+toc_sticky: true
 ---
 
 # Welcome to my blog

@@ -1,11 +1,16 @@
 ---
 title:  "Ubuntu Docker 설치"
-categories: test
+categories: Linux
 tag: [linux, ubuntu,docker]
 toc: true
 author_profile: false
 sidebar:
     nav: "docs"
+use_math: true
+excerpt: Docker 설치
+comments: true
+date: 2022-07-01
+toc_sticky: true
 ---
 
 

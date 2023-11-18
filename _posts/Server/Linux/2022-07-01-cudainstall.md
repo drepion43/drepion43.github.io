@@ -1,11 +1,16 @@
 ---
 title:  "Ubuntu CUDA 설치"
-categories: test
+categories: Linux
 tag: [linux, ubuntu,cuda]
 toc: true
 author_profile: false
 sidebar:
     nav: "docs"
+use_math: true
+excerpt: CUDA 설치
+comments: true
+date: 2022-07-01
+toc_sticky: true
 ---
 
 

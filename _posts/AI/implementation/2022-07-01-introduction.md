@@ -1,7 +1,7 @@
 ---
 title:  "Introduction"
-categories: experiment
-tag: [DeepLearning, python,paper,journal,experiment,pytorch,tensorflow]
+categories: implementation
+tag: [DeepLearning, python,paper,journal,experiment,implementation,pytorch,tensorflow]
 toc: true
 author_profile: false
 sidebar:

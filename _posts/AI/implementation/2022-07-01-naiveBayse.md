@@ -1,18 +1,21 @@
 ---
 title:  "나이브 베이즈 분류기"
-categories: experiment
-tag: [DeepLearning, python]
+categories: implementation
+tag: [MachineLearning, python]
 toc: true
 author_profile: false
 sidebar:
     nav: "docs"
+use_math: true
+excerpt: 나이브 베이즈 구현
+comments: true
+date: 2022-07-01
+toc_sticky: true
 ---
 
 
 # 인하대학교 기계학습 나이브베이즈 실습 과제
 - 저는 주어진 코드가 for문을 3번반복하여 중첩으로 돌아 코드를 돌리는데 시간이 너무 오래걸리는 관계로 데이터들을 numpy로 집어넣어 3번->2번으로 최적화를 시켜 좀 더 빠른 시간내에 코드를 수행할 수 있도록 수정했습니다.
-
-
 
 
 
