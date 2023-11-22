@@ -8,6 +8,10 @@ author_profile: false
 sidebar:
     nav: "docs"
 use_math: true
+excerpt: 극좌표계 설명
+comments: true
+date: 2023-11-04
+toc_sticky: true
 ---
 
 ## 극좌표계
