@@ -58,8 +58,8 @@ lim_{n \rightarrow \infty} P(\| \hat{\theta} - \theta \| \le t ) = 0
 \- $E(\hat{\theta} - \theta)^2$를 나타내 보겠습니다. 하기와 같이 나타내면, $Var(\hat{\theta})$ 와 $Bias(\hat{\theta})$가 모두 0으로 수렴한다면 $\hat{\theta}$는 일치 추정량이 됩니다.     
 \begin{aligned} 
 E(\hat{\theta} - \theta)^2 =& E(\hat{\theta} - E(\hat{\theta}) + E(\hat{\theta}) - \theta )^2 \newline
-=& E(\hat{\theta} - E(\hat{\theta}) )^2 + 2 E(\hat{\theta} - E(\hat{\theta}) ) E(E(\hat{\theta}) - \hat{\theta} ) + E(\hat{\theta} - \theta)^2 \newline
-=&  E(\hat{\theta} - E(\hat{\theta}) )^2 + E(\hat{\theta} - \theta)^2 = Var(\hat{\theta}) + (Bias(\hat{\theta}))^2 
+=& E(\hat{\theta} - E(\hat{\theta}) )^2 + 2 E(\hat{\theta} - E(\hat{\theta}) ) E(E(\hat{\theta}) - \theta ) + E(E(\hat{\theta}) - \theta )^2 \newline
+=&  E(\hat{\theta} - E(\hat{\theta}) )^2 + E(E(\hat{\theta}) - \theta)^2 = Var(\hat{\theta}) + (Bias(\hat{\theta}))^2 
 \end{aligned}    
    
 
