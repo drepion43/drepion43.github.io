@@ -114,7 +114,7 @@ MSE(\hat{\theta}) = E(\hat{\theta} - \theta)^2 = Var(\hat{\theta}) + (Bias(\hat{
 \end{aligned}   
 즉, 분산과 편향의 제곱의 합이 됩니다. 이 말은 **분산이 작으며, 편향이 작을수록** 우수한 추정량이라는 뜻입니다. 그럼 편향이 0인 비편향 추정량(unbiased estimator)의 경우 $MSE(\hat{\theta}) = Var(\hat{\theta})$인 MSE값이 분산과 같아집니다.    
 
-### 최소분산 비편향 추정량
+### 최소분산 비편향 추정량의 방법
 #### $\frac{d}{d \theta} log \; f(X \| \theta)$ 성질
 $\frac{d}{d \theta} log \; f(X \| \theta)$의 성질을 알기 위한 조건을 우선 알아보겠습니다. 하기의 조건은 지수족에 속하는 확률 분포들은 만족합니다.   
 ① $log \; f(x \| \theta)$가 $\theta$에 대해 미분 가능해야합니다.   
@@ -130,23 +130,23 @@ $\frac{d}{d \theta} log \; f(X \| \theta)$의 성질을 알기 위한 조건을 
 **스코어 함수(Score function)**   
 스코어 함수는 **log-likelihood의 1차 미분 값**입니다.  
 \begin{aligned} 
-S(\theta) = \frac{\delta log \; f(x \| \theta)}{\delta \theta}
+S(\theta) = \frac{\delta \; log \; f(x \| \theta)}{\delta \theta}
 \end{aligned}   
 여기서 최대 가능도 추정량(MLE)는 $sum_{i=1}^{n} \frac{\delta log \; f(x_i \| \theta)}{\delta \theta} = 0$이 되는 $\hat{\theta}$를 구하면 됩니다.   
 
 최대 가능도 추정량을 보면, 해당 값들의 합이 0으로 갑니다. 이 뜻은 즉, 스코어 함수의 값이 0에 가깝다는 것은 $\theta$가 변함으로써, 가능도 함수의 변화에 끼치는 영향이 매우 작다는 말이됩니다. 그럼 반대로 **$\theta$가 얼마나 영향을 미치는지**도 알아볼 수 있을 것 같다고 생각합니다. $E(\frac{\delta log \; f(X \| \theta)}{\delta \theta} )$을 통해 $\theta$가 얼마나 정보를 주는지 알아보려고 합니다. 하지만, 해당 스코어 함수 $\frac{\delta log \; f(x \| \theta)}{\delta \theta}$에는 음수와 양수가 함께 존재하기 때문에, **변화하는 양**을 알아보기는 힘들다고 생각합니다. 따라서, 피셔 정보수 $I(\theta)$를 통해 알아볼 수 있습니다.   
 \begin{aligned} 
-I(\theta) = E( (\frac{\delta log \; f(X \| \theta)}{\delta \theta})^2 ) = - E(\frac{d^2}{d \theta^2} log \; f(X \| \theta) )
+I(\theta) = E( (\frac{\delta log \; f(X \| \theta)}{\delta \; \theta})^2 ) = - E(\frac{\delta^2}{\delta \theta^2} log \; f(X \| \theta) )
 \end{aligned}    
 
 만약, 비편향 주정량에 대한 피셔 정보수는 분산의 합과 같아집니다.   
 \begin{aligned} 
-I(\theta) =& E( (sum_{i=1}^{n} \frac{\delta log \; f(x_i \| \theta)}{\delta \theta})^2 ) \newline
-        =& Var(sum_{i=1}^{n} \frac{\delta log \; f(x_i \| \theta)}{\delta \theta})^2) \newline
-        =& \sum_{i=1}^{n} Var( \frac{\delta log \; f(x_i \| \theta)}{\delta \theta})^2)
+I(\theta) =& E( (\sum_{i=1}^{n} \frac{\delta \; log \; f(x_i \| \theta)}{\delta \; \theta})^2 ) \newline
+        =& Var(\sum_{i=1}^{n} \frac{\delta \; log \; f(x_i \| \theta)}{\delta \; \theta})^2) \newline
+        =& \sum_{i=1}^{n} Var( \frac{\delta \; log \; f(x_i \| \theta)}{\delta \; \theta})^2)
 \end{aligned}    
 
-#### cauchy-Schwarz inequality
+#### 코시-슈바르츠 부등식(Cauchy-Schwarz inequality)
 임의의 두 확률 변수 $U$와 $V$에 대해 다음 부등식이 성립합니다. 
 \begin{aligned} 
 ( Cov(U, V) )^2 \le Var(U)Var(V) \Leftrightarrow (Cor(U, V))^2 \le 1
@@ -161,6 +161,102 @@ Var(U + aV) = Var(U) + 2aCov(U, V) + a^2Var(V) \ge 0
 \frac{D}{4} = ( Cov(U, V) )^2 - Var(U)Var(V) \le 0
 \end{aligned}   
 
-#### 크래머-라오 부등식
+#### 크래머-라오 부등식(Cramer-Rao's inequality)
+크래머-라오의 정보 부등식(Cramer-Rao's inequality)은 최소분산 비편향 추정량을 구하는 방법 중 하나입니다. 크래머-라오 부등식을 가정하려면 **정칙 조건**이 필요합니다. 하기에 정칙 조건들에 대해 소개하겠습니다.   
+① 확률 밀도 함수(pdf) $f$는 $\theta$에 대해 단사입니다. 즉, 모수가 달라짐에 따라 예측하고자 하는 모집단의 분포의 pdf가 달라집니다. 하기에 수식으로 정의하겠습니다.    
+\begin{aligned} 
+\theta \neq \theta^{\prime} \Longrightarrow f(x_k \| \theta) \neq f(x_k \| \theta^{\prime})
+\end{aligned}
+② 확률 밀도 함수 $f$ 는 모든 $\theta$에 대해 같은 서포트를 가집니다.   
+③ 참값 $\theta_0$는 $\Omega$의 내점입니다. 즉, $\theta_0$(true parameter 즉 우리의 목표)은 $\Omega$(모수 집합)안에 존재합니다.   
+④ 확률 밀도 함수 $f$는 두 번 미분이 가능합니다.   
+⑤ 적분과 미분 순서를 바꿀 수 있습니다.   
+
+크래머-라오 부등식은 랜덤 샘플 $X_1, X_2, ..., X_n$을 이용한 $\theta$의 비편향 추정량 $T= T(\mathsf{X})$에 대하여 상기의 정칙 조건(①~⑤)을 만족하면 하기의 부등식을 성립합니다.($T(\mathsf{X})$ : $\theta$의 비편향 추정량)   
+\begin{aligned} 
+Var(T) \ge \frac{1}{nI(\theta)}
+\end{aligned}   
+위 부등식에서 $\frac{1}{n I(\theta)}$는 **크래머-라오 하한(Cramer-Rao lower bound)**라고 합니다.    
+
+즉, $\hat{\theta}$가 $\theta$의 비편향 추정량이며 $Var(\hat{\theta}) = \frac{1}{n I(\theta)}$라면, **$\hat{\theta}$는 최소분산 비편향 추정량**이 됩니다. **크래머-라오 하한은 비편향 추정량이 가질 수 있는 최소의 분산**이기 때문입니다.   
+
+이제 크래머-라오 부등식에 대해 증명을 해보겠습니다.   
+우선 $U$와 $V$를 정의해보겠습니다.   
+\begin{aligned}
+U =& T(X) \newline
+V =& \frac{d}{d \theta} log \; f(\mathsf{X} \| \theta) = \sum_{i=1}^{n} \frac{d}{d \theta} log \; f(X_i \| \theta)
+\end{aligned}    
+
+$\frac{d}{d \theta} log \; f(X_i \| \theta)$는 서로 독립이므로 $V$의 분산을 구해보겠습니다.   
+\begin{aligned}
+Var(V) =& Var( \sum_{i=1}^{n} \frac{d}{d \theta} log \; f(X_i \| \theta) ) = nVar(\frac{d}{d \theta} log \; f(\mathsf{X} \| \theta)) \newline
+=& nE( \frac{d}{d \theta} log \; f(\mathsf{X} \| \theta) )^2 = nI(\theta)
+\end{aligned}    
+
+여기서 $\frac{d}{d \theta} log \; f(\mathsf{X} \| \theta)$의 성질 중 하나인 $E( \frac{d}{d \theta} log \; f(\mathsf{X} \| \theta) ) = 0$을 이용하여 $U$와 $V$의 공분산을 구해보겠습니다.   
+\begin{aligned}
+Cov(U, V) =& Cov(T(\mathsf{X}), \frac{d}{d \theta} log \; f(\mathsf{X} \| \theta)) \newline
+=& E( T(\mathsf{X}) \frac{d}{d \theta} log \; f(\mathsf{X} \| \theta) ) - E(T(\mathsf{X}))E( \frac{d}{d \theta} log \; f(\mathsf{X} \| \theta)) = E( T(\mathsf{X}) \frac{d}{d \theta} log \; f(\mathsf{X} \| \theta) ) \newline
+=& \int T(\mathsf{X}) \frac{\frac{d}{d \theta} f(\mathsf{X} \| \theta)}{f(\mathsf{X} \| \theta)} f(\mathsf{X} \| \theta) dx = \int T(\mathsf{X}) \frac{d}{d \theta} f(\mathsf{X} \| \theta) dx \newline
+=& \frac{d}{d \theta} ( \int T(\mathsf{X}) f(\mathsf{X} \| \theta) dx ) = \frac{d}{d \theta} E(T(\mathsf{X})) \newline
+=& \frac{d}{d \theta} \theta = 1
+\end{aligned}   
+
+따라서, 코시-슈바르츠 부등식(Cauchy-Schwarz inequality)에 의해 하기와 같이 나타낼 수 있습니다.   
+\begin{aligned}
+Var(T) \ge \frac{ ( Cov(T, \sum_{i=1}^{n} \frac{d}{d \theta} log \; f(X_i \| \theta) ) )^2 }{Var( \frac{d}{d \theta} log \; f(X_i \| \theta) )} = \frac{1}{n I(\theta)}
+\end{aligned}    
+
+더 쉬운 이해를 위해 예시 문제를 풀어보겠습니다.   
+$X_1, X_2, X_3, ..., X_n$이 Poisson($\theta$)로부터의 랜덤샘플일 때 <span style='color:blue'>$\theta$의 추정량 $\bar{X}$(추측)</span>는 $\theta$의 비편향 추정량이고 $Var(\bar{X})=\frac{\theta}{n} = \frac{1}{n I(\theta)}$입니다. 따라서, $\bar{X}$는 $\theta$의 **best unbiased estimator**입니다.   
 
 
+#### 라오-블랙웰 정리(Rao-Blackewell theorem)
+라오-블랙웰 정리의 의미부터 살펴보겠습니다.   
+> $S(X) : \theta$의 추정량   
+> $T(X) : \theta$의 충분통계량   
+> $S \* (X) = E( S(X) \| T(X) ) : \theta$의 추정량이라고 하겠습니다.   
+> 단, ① $E(S (X)) = E( S \* (X))$ : $S(X)$가 unbiased estimator라면 $S \* (X)$도 $\theta$의 unbiased estiamtor입니다.   
+> &nbsp; &nbsp; ② $Var( S \* (X)) \le Var( S(X))$   
+
+상기의 의미를 정리해보겠습니다.   
+$S(X)$가 $\theta$의 nbiased estimator이면, $S \* (X)$ 또한 unbiased estimator가 됩니다.   
+또한, $S(X)$보다 $S \* (X)$가 더 좋은 unbiased estimator가 됩니다.   
+
+이제 라오-블랙웰에 대해 증명을 해보겠습니다.   
+우선 $S \* (X)$의 기댓값과 분산을 구해보겠습니다.   
+\begin{aligned}
+E( S \* (X)) =& E( E( S(X) \| T(X) ) ) = E(S(X)) \newline
+Var(S(X)) =& E( Var(S(X) \| T(X) ) ) + Var( E( S(X) \| T(X) ) ) \newline
+=& E( Var(S(X) \| T(X) ) ) + Var( E( S \* (X) )
+\end{aligned}    
+
+따라서, $E(S \* (X)) = E(S(X))$가 되며, $Var(S \* (X)) \le Var(S(X))$가 됩니다.   
+
+몇가지 의문들에 정리해보겠습니다.   
+\- $T(X)$가 충분통계량이라는 조건이 왜 필요한가?   
+&rarr; $X \bot X$라면 $S \* (X)= E(S(X) \| Y) = \theta$이므로, $S \* (X)$는 $\theta$의 추정량이 되지 못합니다. 그러나 $S(X) \| T(X)$는 $\theta$에 의존하지 않으므로, $E(S(X) \| T(X))$는 추정량이 될 수 있습니다.  
+\- 라오-블랙웰 정리에 의하면 $Bias(S \* (X)) = Bias(S(X)), \; Var(S \* (X)) \le Var(S(X))$이 성립합니다. 따라서 $S(X)$는 $\theta$의 비편향 추정량이면서 보다 더 좋은 $S \* (X)$가 있으며 이 또한 비편향 추정량입니다.   
+\- 어떤 추정량이든 충분통계량의 조건부 기댓값을 통해 더 우수한 추정량을 만들 수 있습니다.   
+
+#### 레만-쉐퍼 정리
+레만-쉐퍼 정리의 의미부터 살펴보겠습니다.   
+> $S(X) : \theta$의 추정량   
+> $T(X) : \theta$의 완비충분통계량   
+> $S \* (X) = E( S(X) \| T(X)$가 $\theta$의 최소분산 비편향 추정량입니다.   
+
+상기의 의미를 정리해보겠습니다.   
+라오-블랙웰 정리에 의해 $S \* (X)$도 $\theta$의 unbiased estimator입니다.   
+또한, $U(X)$를 임의의 $\theta$에 대한 unbiased estimator라고 가정하겠습니다. 그러면 $Var(S \* (X)) \le Var(U(X))$이면 $S\*(X)$는 $\theta$의 최소분산 비편향 추정량이 됩니다.   
+
+이제 레만-쉐퍼 정리에 대해 증명을 해보겠습니다.   
+우선 $U \* (X) = E( U(X) \| T(X))$라고 가정하겠습니다. 그럼 라오-블랙웰 정리에 의해 $E(U \* (X)) = E(U(X)) = \theta, \; Var(U \* (X)) \le Var(U(X))$을 만족합니다.   
+$S \* (X)$와 $U \* (X)$ 모두 $\theta$의 비편향 추정량이므로, $E( S \* (X) - U \* (X) ) = \theta - \theta = 0$이 됩니다.(여기서 $S \* (X)$와 $U \* (X)$는 모두 $T(X)$의 함수입니다.)   
+**$T(X)$는 완비충분통계량**이니 완비충분통계량의 정의에 의해 하기와 같이 나타낼 수 있습니다.   
+\begin{aligned}
+S \* (X) - U \* (X) =& 0 \newline
+S \* (X)  =& U \* (X) \newline
+Var( S \* (X) ) = Var( U \* (X)) \le Var( U(X))
+\end{aligned}
+
+### 최소 분산 비편향 추정량
