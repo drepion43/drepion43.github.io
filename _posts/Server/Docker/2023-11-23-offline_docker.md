@@ -81,7 +81,7 @@ docker info
 docker group에 현재 사용중인 계정 또한 포함시켰습니다.   
 
 이제 docker-compose를 설치해보겠습니다.    
-[Docker-compose](https://github.com/docker/compose/releases/download/1.24.0/docker-compose-Linux-x86_64)에서 자신의 환경에 맞는 docker-compose를 설치해줍니다. 그런 후 이전과 동일하게 scp, sftp 등을 통해 서버로 옮겨주겠습니다.   
+[Docker-compose](https://github.com/docker/compose/releases)에서 자신의 환경에 맞는 docker-compose를 설치해줍니다. 그런 후 이전과 동일하게 scp, sftp 등을 통해 서버로 옮겨주겠습니다.   
 ```bash
 mv docker-compose-Linux-x86_64 docker-compose // 이름 변경
 
