@@ -1,5 +1,5 @@
 ---
-title:  "Ubuntu CUDA 설치"
+title:  "[Ubuntu]CUDA 설치"
 categories: Linux
 tag: [linux, ubuntu,cuda]
 toc: true
@@ -15,7 +15,7 @@ toc_sticky: true
 
 
 ## 1. INSTALL Nvidia Graphics Driver
-```python
+```bash
 ubuntu-drivers devices
 
 원하는 드라이버로 설치
@@ -27,14 +27,14 @@ sudo ubuntu-drivers autoinstall
 sudo reboot
 ```
 
-```python
+```bash
 nvidia-smi
 ```
 ### 설치 확인
 
 
 ## 2.  CUDA INSTALL
-```python
+```bash
 sudo rm -rf /usr/local/cuda*
 ./bashrc
 ```
@@ -44,7 +44,7 @@ sudo rm -rf /usr/local/cuda*
 https://developer.nvidia.com/cuda-toolkit-archive
 ### 자신의 GPU에 알맞은 CUDA VERSION을 찾아서 설치
 
-```python
+```bash
 sudo sh -c "echo 'export PATH=$PATH:/usr/local/cuda-11.4/bin' >> /etc/profile"
 sudo sh -c "echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-11.4/lib64' >> /etc/profile"
 sudo sh -c "echo 'export CUDADIR=/usr/local/cuda-11.4' >> /etc/profile"
@@ -57,7 +57,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-xx.x/lib64
 export CUDADIR=/usr/local/cuda-xx.x
 ```
 
-```python
+```bash
 nvcc -V
 ```
 ### CUDA 설치 확인
@@ -69,7 +69,7 @@ https://developer.nvidia.com/cudnn
 
 
 ### COPY FILE
-```python
+```bash
 tar xvzf cudnn-11.2-linux-x64-v8.1.0.77.tgz
 
 sudo cp cuda/include/cudnn* /usr/local/cuda/include
@@ -80,7 +80,7 @@ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
 ```
 
 ### Symbolic Link
-```python
+```bash
 sudo ln -sf /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn_adv_train.so.x.x.x /usr/local/cuda-11.2/targets/x86_64-linux/lib/libcudnn_adv_train.so.8
 sudo ln -sf /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn_ops_infer.so.x.x.x  /usr/local/cuda-11.2/targets/x86_64-linux/lib/libcudnn_ops_infer.so.8
 sudo ln -sf /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn_cnn_train.so.x.x.x  /usr/local/cuda-11.2/targets/x86_64-linux/lib/libcudnn_cnn_train.so.8
@@ -88,11 +88,5 @@ sudo ln -sf /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn_adv_infer.so.
 sudo ln -sf /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn_ops_train.so.x.x.x  /usr/local/cuda-11.2/targets/x86_64-linux/lib/libcudnn_ops_train.so.8
 sudo ln -sf /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn_cnn_infer.so.x.x.x /usr/local/cuda-11.2/targets/x86_64-linux/lib/libcudnn_cnn_infer.so.8
 sudo ln -sf /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn.so.x.x.x  /usr/local/cuda-11.2/targets/x86_64-linux/lib/libcudnn.so.8
-
-```
-
-
-```python
-
 
 ```

@@ -130,20 +130,20 @@ $\frac{d}{d \theta} log \; f(X \| \theta)$의 성질을 알기 위한 조건을 
 **스코어 함수(Score function)**   
 스코어 함수는 **log-likelihood의 1차 미분 값**입니다.  
 \begin{aligned} 
-S(\theta) = \frac{\delta \; log \; f(x \| \theta)}{\delta \theta}
+S(\theta) = \frac{\partial \; log \; f(x \| \theta)}{\partial \theta}
 \end{aligned}   
-여기서 최대 가능도 추정량(MLE)는 $sum_{i=1}^{n} \frac{\delta log \; f(x_i \| \theta)}{\delta \theta} = 0$이 되는 $\hat{\theta}$를 구하면 됩니다.   
+여기서 최대 가능도 추정량(MLE)는 $sum_{i=1}^{n} \frac{\partial log \; f(x_i \| \theta)}{\partial \theta} = 0$이 되는 $\hat{\theta}$를 구하면 됩니다.   
 
-최대 가능도 추정량을 보면, 해당 값들의 합이 0으로 갑니다. 이 뜻은 즉, 스코어 함수의 값이 0에 가깝다는 것은 $\theta$가 변함으로써, 가능도 함수의 변화에 끼치는 영향이 매우 작다는 말이됩니다. 그럼 반대로 **$\theta$가 얼마나 영향을 미치는지**도 알아볼 수 있을 것 같다고 생각합니다. $E(\frac{\delta log \; f(X \| \theta)}{\delta \theta} )$을 통해 $\theta$가 얼마나 정보를 주는지 알아보려고 합니다. 하지만, 해당 스코어 함수 $\frac{\delta log \; f(x \| \theta)}{\delta \theta}$에는 음수와 양수가 함께 존재하기 때문에, **변화하는 양**을 알아보기는 힘들다고 생각합니다. 따라서, 피셔 정보수 $I(\theta)$를 통해 알아볼 수 있습니다.   
+최대 가능도 추정량을 보면, 해당 값들의 합이 0으로 갑니다. 이 뜻은 즉, 스코어 함수의 값이 0에 가깝다는 것은 $\theta$가 변함으로써, 가능도 함수의 변화에 끼치는 영향이 매우 작다는 말이됩니다. 그럼 반대로 **$\theta$가 얼마나 영향을 미치는지**도 알아볼 수 있을 것 같다고 생각합니다. $E(\frac{\partial log \; f(X \| \theta)}{\partial \theta} )$을 통해 $\theta$가 얼마나 정보를 주는지 알아보려고 합니다. 하지만, 해당 스코어 함수 $\frac{\partial log \; f(x \| \theta)}{\partial \theta}$에는 음수와 양수가 함께 존재하기 때문에, **변화하는 양**을 알아보기는 힘들다고 생각합니다. 따라서, 피셔 정보수 $I(\theta)$를 통해 알아볼 수 있습니다.   
 \begin{aligned} 
-I(\theta) = E( (\frac{\delta log \; f(X \| \theta)}{\delta \; \theta})^2 ) = - E(\frac{\delta^2}{\delta \theta^2} log \; f(X \| \theta) )
+I(\theta) = E( (\frac{\partial log \; f(X \| \theta)}{\partial \; \theta})^2 ) = - E(\frac{\partial^2}{\partial \theta^2} log \; f(X \| \theta) )
 \end{aligned}    
 
 만약, 비편향 주정량에 대한 피셔 정보수는 분산의 합과 같아집니다.   
 \begin{aligned} 
-I(\theta) =& E( (\sum_{i=1}^{n} \frac{\delta \; log \; f(x_i \| \theta)}{\delta \; \theta})^2 ) \newline
-        =& Var(\sum_{i=1}^{n} \frac{\delta \; log \; f(x_i \| \theta)}{\delta \; \theta})^2) \newline
-        =& \sum_{i=1}^{n} Var( \frac{\delta \; log \; f(x_i \| \theta)}{\delta \; \theta})^2)
+I(\theta) =& E( (\sum_{i=1}^{n} \frac{\partial \; log \; f(x_i \| \theta)}{\partial \; \theta})^2 ) \newline
+        =& Var(\sum_{i=1}^{n} \frac{\partial \; log \; f(x_i \| \theta)}{\partial \; \theta})^2) \newline
+        =& \sum_{i=1}^{n} Var( \frac{\partial \; log \; f(x_i \| \theta)}{\partial \; \theta})^2)
 \end{aligned}    
 
 #### 코시-슈바르츠 부등식(Cauchy-Schwarz inequality)
@@ -215,48 +215,82 @@ $X_1, X_2, X_3, ..., X_n$이 Poisson($\theta$)로부터의 랜덤샘플일 때 <
 라오-블랙웰 정리의 의미부터 살펴보겠습니다.   
 > $S(X) : \theta$의 추정량   
 > $T(X) : \theta$의 충분통계량   
-> $S \* (X) = E( S(X) \| T(X) ) : \theta$의 추정량이라고 하겠습니다.   
-> 단, ① $E(S (X)) = E( S \* (X))$ : $S(X)$가 unbiased estimator라면 $S \* (X)$도 $\theta$의 unbiased estiamtor입니다.   
-> &nbsp; &nbsp; ② $Var( S \* (X)) \le Var( S(X))$   
+> $S^{\*} (X) = E( S(X) \| T(X) ) : \theta$의 추정량이라고 하겠습니다.   
+> 단, ① $E(S (X)) = E( S^{\*} (X))$ : $S(X)$가 unbiased estimator라면 $S^{\*} (X)$도 $\theta$의 unbiased estiamtor입니다.   
+> &nbsp; &nbsp; ② $Var( S^{\*} (X)) \le Var( S(X))$   
 
 상기의 의미를 정리해보겠습니다.   
-$S(X)$가 $\theta$의 nbiased estimator이면, $S \* (X)$ 또한 unbiased estimator가 됩니다.   
-또한, $S(X)$보다 $S \* (X)$가 더 좋은 unbiased estimator가 됩니다.   
+$S(X)$가 $\theta$의 nbiased estimator이면, $S^{\*} (X)$ 또한 unbiased estimator가 됩니다.   
+또한, $S(X)$보다 $S^{\*} (X)$가 더 좋은 unbiased estimator가 됩니다.   
 
 이제 라오-블랙웰에 대해 증명을 해보겠습니다.   
-우선 $S \* (X)$의 기댓값과 분산을 구해보겠습니다.   
+우선 $S^{\*} (X)$의 기댓값과 분산을 구해보겠습니다.   
 \begin{aligned}
-E( S \* (X)) =& E( E( S(X) \| T(X) ) ) = E(S(X)) \newline
+E( S^{\*} (X)) =& E( E( S(X) \| T(X) ) ) = E(S(X)) \newline
 Var(S(X)) =& E( Var(S(X) \| T(X) ) ) + Var( E( S(X) \| T(X) ) ) \newline
-=& E( Var(S(X) \| T(X) ) ) + Var( E( S \* (X) )
+=& E( Var(S(X) \| T(X) ) ) + Var( E( S^{\*} (X) )
 \end{aligned}    
 
-따라서, $E(S \* (X)) = E(S(X))$가 되며, $Var(S \* (X)) \le Var(S(X))$가 됩니다.   
+따라서, $E(S^{\*} (X)) = E(S(X))$가 되며, $Var(S^{\*} (X)) \le Var(S(X))$가 됩니다.   
 
 몇가지 의문들에 정리해보겠습니다.   
 \- $T(X)$가 충분통계량이라는 조건이 왜 필요한가?   
-&rarr; $X \bot X$라면 $S \* (X)= E(S(X) \| Y) = \theta$이므로, $S \* (X)$는 $\theta$의 추정량이 되지 못합니다. 그러나 $S(X) \| T(X)$는 $\theta$에 의존하지 않으므로, $E(S(X) \| T(X))$는 추정량이 될 수 있습니다.  
-\- 라오-블랙웰 정리에 의하면 $Bias(S \* (X)) = Bias(S(X)), \; Var(S \* (X)) \le Var(S(X))$이 성립합니다. 따라서 $S(X)$는 $\theta$의 비편향 추정량이면서 보다 더 좋은 $S \* (X)$가 있으며 이 또한 비편향 추정량입니다.   
+&rarr; $X \bot X$라면 $S^{\*} (X)= E(S(X) \| Y) = \theta$이므로, $S^{\*} (X)$는 $\theta$의 추정량이 되지 못합니다. 그러나 $S(X) \| T(X)$는 $\theta$에 의존하지 않으므로, $E(S(X) \| T(X))$는 추정량이 될 수 있습니다.  
+\- 라오-블랙웰 정리에 의하면 $Bias(S^{\*} (X)) = Bias(S(X)), \; Var(S^{\*} (X)) \le Var(S(X))$이 성립합니다. 따라서 $S(X)$는 $\theta$의 비편향 추정량이면서 보다 더 좋은 $S^{\*} (X)$가 있으며 이 또한 비편향 추정량입니다.   
 \- 어떤 추정량이든 충분통계량의 조건부 기댓값을 통해 더 우수한 추정량을 만들 수 있습니다.   
 
 #### 레만-쉐퍼 정리
 레만-쉐퍼 정리의 의미부터 살펴보겠습니다.   
 > $S(X) : \theta$의 추정량   
 > $T(X) : \theta$의 완비충분통계량   
-> $S \* (X) = E( S(X) \| T(X)$가 $\theta$의 최소분산 비편향 추정량입니다.   
+> $S^{\*} (X) = E( S(X) \| T(X) )$가 $\theta$의 최소분산 비편향 추정량입니다.   
 
 상기의 의미를 정리해보겠습니다.   
-라오-블랙웰 정리에 의해 $S \* (X)$도 $\theta$의 unbiased estimator입니다.   
-또한, $U(X)$를 임의의 $\theta$에 대한 unbiased estimator라고 가정하겠습니다. 그러면 $Var(S \* (X)) \le Var(U(X))$이면 $S\*(X)$는 $\theta$의 최소분산 비편향 추정량이 됩니다.   
+라오-블랙웰 정리에 의해 $^{\*} (X)$도 $\theta$의 unbiased estimator입니다.   
+또한, $U(X)$를 임의의 $\theta$에 대한 unbiased estimator라고 가정하겠습니다. 그러면 $Var(S^{\*} (X)) \le Var(U(X))$이면 $S^{\*}(X)$는 $\theta$의 최소분산 비편향 추정량이 됩니다.   
 
 이제 레만-쉐퍼 정리에 대해 증명을 해보겠습니다.   
-우선 $U \* (X) = E( U(X) \| T(X))$라고 가정하겠습니다. 그럼 라오-블랙웰 정리에 의해 $E(U \* (X)) = E(U(X)) = \theta, \; Var(U \* (X)) \le Var(U(X))$을 만족합니다.   
-$S \* (X)$와 $U \* (X)$ 모두 $\theta$의 비편향 추정량이므로, $E( S \* (X) - U \* (X) ) = \theta - \theta = 0$이 됩니다.(여기서 $S \* (X)$와 $U \* (X)$는 모두 $T(X)$의 함수입니다.)   
+우선 $U^{\*} (X) = E( U(X) \| T(X))$라고 가정하겠습니다. 그럼 라오-블랙웰 정리에 의해 $E(U^{\*} (X)) = E(U(X)) = \theta, \; Var(U^{\*} (X)) \le Var(U(X))$을 만족합니다.   
+$S^{\*} (X)$와 $U^{\*} (X)$ 모두 $\theta$의 비편향 추정량이므로, $E( S^{\*} (X) - U^{\*} (X) ) = \theta - \theta = 0$이 됩니다.(여기서 $S^{\*} (X)$와 $U^{\*} (X)$는 모두 $T(X)$의 함수입니다.)   
 **$T(X)$는 완비충분통계량**이니 완비충분통계량의 정의에 의해 하기와 같이 나타낼 수 있습니다.   
 \begin{aligned}
-S \* (X) - U \* (X) =& 0 \newline
-S \* (X)  =& U \* (X) \newline
-Var( S \* (X) ) = Var( U \* (X)) \le Var( U(X))
+S^{\*}(X) - U^{\*}(X) =& 0 \newline
+S^{\*} (X)  =& U^{\*} (X) \newline
+Var( S^{\*} (X) ) =& Var( U^{\*} (X)) \le Var( U(X))
 \end{aligned}
 
 ### 최소 분산 비편향 추정량
+
+이제까지 최소분산 비편향 추정량을 구하는 다양한 방법들에 대해 설명했습니다. 이제는 **$\theta$에 대한 최소분산 비편향 추정량**을 구하는 방법에 대한 방법들을 정리해보겠습닏.   
+① **정칙 조건**을 만족하는 비편향 추정량 $S^{\*} (X)$의 분산이 **크래머-라오 하한**과 같을 때 $S^{\*}(X)$는 $\theta$의 최소분산 비편향 추정량이 됩니다.   
+&rarr; 크래머-라오 부등식을 이용합니다. 즉, **추측이 필요하고 정칙 조건**을 만족하며, $S \*(X)$가 $\theta$의 비편향 추정량이고, $Var(S^{\*}(X))= \frac{1}{n I(\theta)}$이면 $S^{\*}(X)$는 최소분산 비편향 추정량이 됩니다. 
+② $T(X)$가 완비충분통계량이고 $S(X)$는 $\theta$의 비편향 추정량일 때, $S^{\*}(X)= E( S(X) \| T(X) )$는 $\theta$의 최소분산 비편향 추정량이됩니다.   
+&rarr; 레만-쉐퍼 정리를 이용합니다. **$S(X)$가 $\theta$의 비편향 추정량**이고, **$T(X)$가 $\theta$의 완비충분통계량**일시, $S^{\*}(X) = E( S^{\*}(X) \| T(X) )$가 최소분산 비편향 추정량이됩니다.    
+③ $h( T(X) )$가 $\theta$의 비편향 추정량이고, $T(X)$가 $\theta$의 완비충분통계량일시, **$h( T(X) )$가 최소분산 비편향 추정량**이 됩니다.   
+&rarr; $E( h(T(X)) \| T(X) )$에서 $h(T(X))$는 $T(X)$의 함수이니 $T(X)$가 결정될 시, 값이 정해지니 $h(T(X))$는 최소분산 비편향 추정량이 됩니다.   
+
+예시 문제를 풀어보며 좀 더 쉽게 이해를 해보겠습니다.   
+
+\- $X_1, X_2, ..., X_n$이 $Poisson(\theta)$로부터의 랜덤샘플일 때, $\theta$와 $\theta^2$의 최수분산 비편향 추정량을 구해보겠습니다.   
+우선 $T(X) = \sum_{i=1}^{n} X_i$는 $\theta$에 대한 완비충분통계량입니다.   
+$E(h(T(X))) = \theta$인 $h(T(X))$를 찾아보겠습니다.   
+$E( T(X)) = E( \sum_{i=1}^{n} X_i) = n \theta$이니, $E(\frac{1}{n} T(X) ) = \theta$가 됩니다. 따라서, $\frac{1}{n} T(X) = \bar{X}$은 완비충분통계량이며 $\theta$의 비편향 추정량며, 최소분산 비편향 추정량이됩니다.   
+다음으로, $E(h(T(X))) = \theta^2$인 $h(T(X))$를 찾아보겠습니다. 우선 포아송 분포의 성질에 의해 $T(X) = \sum_{i=1}^{n} X_i \sim Poisson(n\theta)$를 만족합니다. $\theta^2$을 만들어 주기 위해 $T(X)^2$을 이용해보겠습니다.   
+$E( (T(X))^2 ) = Var(T(X)) + (E(T(X)))^2 = n\theta + n^2 \theta^2$   
+$E( (T(X))^2 - T(X) ) = n\theta + n^2 \theta^2 - n\theta = n^2 \theta^2$   
+$E( \frac{1}{n^2}\[ (T(X))^2 - T(X) \] ) = \theta^2$   
+따라서, $\frac{1}{n^2} \[ (\sum_{i=1}^{n} X_i)^2 - \sum_{i=1}^{n} X_i \]$이 $\theta^2$의 최소분산 비편향 추정량이됩니다.   
+
+\- $X_1, X_2, X_3, ..., X_n$이 $Poisson(\theta)$의 랜덤샘플일 때, $\theta e^{- \theta}$의 최소분산 비편향 추정량을 구해보겠습니다. 즉, **$P(X_1=1)$**이 되는 확률을 구하는 문제라고 생각하면됩니다.   
+$T(X) = \sum_{i=1}^{n} X_i$는 완비충분통계량이며, $S(X) = 0(X_1 \neq 1) \; or \; 1(X_1 = 1)$로 설정할 수 있습니다.   
+$E\[ S(X)\] = 1 \times P(S(X) = 1) + 0 \times P(S(X) \neq 1) = P(X_1 = 1) = \theta e^{- \theta}$를 통해 **$S(X)$는 $\theta e^{- \theta}$의 비편향 추정량**임을 알 수 있습니다.   
+그럼 이제 최소분산 비편향 추정량을 구해보겠습니다.   
+$S^{\*}(X) = E\[ S(X) \| \sum_{i=1}^{n} X_i \]$을 만족하는 것이 최소분산 비편향 추정량이 됩니다.   
+\begin{aligned}
+S^{\*}(X) =& 1 \times P( S(X) = 1 \| \sum_{i=1}^{n} X_i) + 0 \times P( S(X) \neq 1 \| \sum_{i=1}^{n} X_i) \newline
+=& P(X_1 =1 \| \sum X_i) = \frac{P(X_1 = 1, \sum X_i = t )}{P(\sum X_i = t)} = \frac{P(X_1 = 1, \sum_{i=2} X_i = t -1 )}{ \frac{\theta^t e^{- \theta} }{t !} } \newline
+=& \frac{ \theta e^{- \theta} ( \frac{\theta^{t-1} e^{- (n-1) \theta}}{t-1} )^{n-1} }{ (\frac{\theta^t e^{- n\theta}}{t !})^n } \newline
+=& t \times \frac{ (n-1)^{t-1}}{n^t} = (\sum_{i=1}^{n} X_i ) \times \frac{(n-1)^{\sum_{i=1}^{n} X_i - 1}}{n^{\sum_{i=1}^{n} X_i}} 
+\end{aligned}   
+
+따라서, $ (\sum_{i=1}^{n} X_i ) \times \frac{(n-1)^{\sum_{i=1}^{n} X_i - 1}}{n^{\sum_{i=1}^{n} X_i}}$가 최소분산 비편향 추저량이됩니다.

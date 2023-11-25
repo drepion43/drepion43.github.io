@@ -1,6 +1,6 @@
 ---
-title:  "Ubuntu Docker 설치"
-categories: Linux
+title:  "[Ubuntu]Docker 설치"
+categories: Docker
 tag: [linux, ubuntu,docker]
 toc: true
 author_profile: false

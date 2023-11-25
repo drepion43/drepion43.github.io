@@ -1,5 +1,5 @@
 ---
-title:  "Ubuntu 간단한 패키지 설치"
+title:  "[Ubuntu]간단한 패키지 설치"
 categories: Linux
 tag: [linux, ubuntu]
 toc: true
