@@ -131,8 +131,9 @@ Span은<span style='color:red'> **어떤 vector들을 가지고 span**</span>하
 
 그럼 반대로, Linear dependent는 $x_1 \underline{v_1} + x_2 \underline{v_2} + x_3 \underline{v_3} + ... = \underline{0}$에서 **계수들인 $x_1,x_2,x_3,...$들 중 하나라도 nonzero**라면 Linear dependent하다고 할 수 있습니다. 예를 들어 보겠습니다.   
 \begin{aligned} 
--2\begin{bmatrix} 1 & 1 \end{bmatrix}
-1\begin{bmatrix} 2 & 2 \end{bmatrix} 
+-2\begin{bmatrix} 1 \newline 1 \end{bmatrix}
++
+1\begin{bmatrix} 2 \newline 2 \end{bmatrix} 
 = 0 
 \end{aligned}   
 상기의 경우 Linear Independent의 정의를 만족못하니 dependent합니다.    
