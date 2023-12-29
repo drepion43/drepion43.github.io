@@ -1,5 +1,5 @@
 ---
-title:  "고유값과 고유벡터(eigen value and eigen vector) 1"
+title:  "고유값과 고유벡터(eigen value and eigen vector)1"
 categories: LinearAlgebra
 tag: [theory, math]
 tags: [Jekyll, MathJax]
