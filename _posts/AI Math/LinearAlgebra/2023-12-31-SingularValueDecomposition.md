@@ -92,3 +92,33 @@ $\underline{x^T} U^T U \underline{x} = \lambda^2 \underline{x^T} \underline{x}$
 그럼 $U^T U = I$이니, 최종적으로 $\underline{x^T} \underline{x} = \lambda^2 \underline{x^T} \underline{x}$이 되니, $\lambda = \pm 1$인 것을 알 수 있습니다.    
 
 상기의 두가지를 통해 알 수 있는 것은, <span style='color:red'>**우선 방금전에 알아낸 $U, V$의 eigen value인 $\lambda = \pm 1$이다는 뜻은 $U,V$를 통해서는 $\underline{x}$의 크기를 바꿀 수는 없다**</span>는 뜻이 됩니다. 즉, 선형변환측면에서 $(U, \Sigma, V^T)$를 하나씩 통과시키는 것을 생각해보면, $V$를 통해 우선 방향만 바뀐 후, $\Sigma$를 통해 크기를 변경, 다시 $U$를 통해 방향을 바꿔 최종적으로 A를통한 선형변환이 일어난다는 뜻입니다. 
+
+### 응용
+
+#### 데이터 압축
+\begin{aligned}    
+A =& U \Sigma V^T \newline   
+A =& \begin{bmatrix} \underline{u_1} & \underline{u_2} & \ldots \end{bmatrix} \begin{bmatrix} \sigma_1 &  & \newline & \sigma_2 & \newline & & \ldots \end{bmatrix} \begin{bmatrix} \underline{v_1^T} \newline \underline{v_2^T} \newline \ldots \end{bmatrix} \newline   
+=& \begin{bmatrix} \sigma_1 \underline{u_1} & \sigma_2 \underline{u_2} & \ldots \end{bmatrix} \begin{bmatrix} \underline{v_1^T} \newline \underline{v_2^T} \newline \ldots \end{bmatrix} \newline   
+=&  \sigma_1 \underline{u_1} \underline{v_1^T} + \sigma_2 \underline{u_2} \underline{v_2^T} + \ldots \newline
+\end{aligned}    
+
+<img src="../../../assets/images/LinearAlgebra/2023-12-31-SingularValueDecomposition/Data Compression1.jpg" alt="Data Compression 1" style="zoom:80%;" />    
+상기와 같이 최종적으로 $\sigma_1 \underline{u_1} \underline{v_1^T} + \sigma_2 \underline{u_2} \underline{v_2^T} + \ldots$으로 나타내집니다. 즉, **rank-1 matrix**로 표현이 됩니다. 이전 Eigen Decomposition의 포스팅에서와 동일하게 행렬 $A$를 rank-1 Matrix로 쪼개놓은 것들이 됩니다. 또, $\sigma$들의 값의 크기순으로 내림차순으로 정렬을 했다고 했을 때, $\sigma$값이 큰 Matrix만 남겨놓으면 데이터 압축이 됩니다. Eigen Value를 통한 압축과 다른 점은 Eigen의 경우에는 **Symmetric Matrix에 대한 Decomposition**이지만, SVD의 데이터 압축은 상관이 없어집니다. 
+
+#### PCA(차원 축소)
+PCA도 이전 포스팅에서 다뤘습니다. 간단하게 말씀을 다시 드리면, PCA는 **분산이 가장큰 vector로 Projection을 시켰을 때, 에러가 가장 작아진다**입니다. 하기에 PCA의 정의를 수식으로 다시 설명하겠습니다.   
+\begin{aligned}    
+max_{\underline{u}} \underline{u^T} R_d \underline{u} \newline   
+R_d =& \frac{1}{N} \sum \underline{d_i} \underline{d_i^T} \newline   
+=& \frac{1}{N} \begin{bmatrix} \underline{d_1} &  \underline{d_2}  & \underline{d_3} & \ldots \end{bmatrix} \begin{bmatrix} \underline{d_1^T} \newline  \underline{d_2^T}  \newline \underline{d_3^T} \newline \vdots \end{bmatrix} \newline   
+=& \frac{1}{N} D D^T 
+\end{aligned}   
+
+상기의 수식에서 PCA의 $R_d=\frac{1}{N} D D^T$로 표현할 수 있습니다. 여기서 **$D D^T$는 무조건 Symmetric Matrix**라고 위에서 설명했습니다. SVD에서는 $D$가 Symmetric이 아니더라도 $D D^T$는 Symmetric이기 때문에 하기와 같이 나타낼 수 있던 것을 기억하실 겁니다.   
+\begin{aligned}    
+A A^T =& U \Sigma V^T V \Sigma^T U^T \newline   
+=& U \Sigma \Sigma^T U^T
+\end{aligned}   
+
+상기의 수식을 보면, 이전 PCA는 $R_d$의 Eigen vector를 찾는다고 했습니다. 그것이 이번 SVD로 확인해보면 **A의 $U$인 Left Singular Vector**가 되는 것을 확인할 수 있습니다. 즉, **$D$를 SVD해서 $U$인 Left Singular Vector**를 구하면 그것이 $R_d$의 Egien vector라는 말이 됩니다. 
