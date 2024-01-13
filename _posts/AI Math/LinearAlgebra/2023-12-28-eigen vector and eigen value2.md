@@ -79,7 +79,7 @@ Q\underline{v} =& \lambda \underline{v} \newline
 =& \underline{v^T} I \underline{v} =||v||_2^2 = \lambda^2 ||v||_2^2   
 \end{aligned}   
 
-orthogonal matrix의 성질에 상기와 같이 전개됩니다. 따라서 $\lambda^2 = 1$이되니 $\lambda = \pm 1$이 됩니다.
+orthogonal matrix의 성질에 상기와 같이 전개됩니다. 따라서 $\lambda^2 = 1$이되니 $\lambda = \pm 1$이 됩니다.   
 ③ A가 Positive Semi-definite(p.s.d)이면, $\lambda_i \ge 0$   
 &rarr; positive semi-definition(p.s.d)에 대해 간략하게 설명하겠습니다.   
 어떤 symmetric matrix 가 $\underline{z^T} A \underline{z} \ge 0 = ||\underline{z}||_2^2 \lambda \ge 0$을 만족합니다.($A\underline{z} = \lambda \underline{z}$)   
