@@ -14,7 +14,7 @@ toc_sticky: true
 ---
 # Ubuntu 설치(Linux 계열)
 저는 Ubuntu를 이용할 것이기 때문에 Ubuntu를 이용하고 싶으신 분들은 하기의 링크에 듀얼 부팅 설치하는 법을 정리했으니 먼저 이를 수행해주시면 감사하겠습니다. 만약 Ubuntu가 아닌 Centos, Debian등을 이용하고 싶으신 분들은 iso파일만 자신이 사용하고 싶은 OS를 설치하여 부팅디스크를 만들고, 해당 OS설치하는 법만 다를뿐, 큰 틀인 듀얼 부팅 설정방법은 동일하니 참고하시기에도 좋으실 것 같습니다.   
-<https://drepion43.github.io/linux/ubuntu/>
+<https://drepion43.github.io/linux/ubuntuInstall/>
 
 # 포트포워딩
 우선 cmd창을 켠 후 ipconfig를 통해 이더넷인 나의 IP주소와 공유기의 IP주소를 알아옵니다. 그럼 인터넷창에 공유기 IP주소를 입력하면 하기와 같은 창이 뜨며, 공유기 설정으로 들어갈 수 있습니다.   
@@ -39,8 +39,7 @@ sudo apt-get install openssh-server
 상기와 같이 나오면 설치가 잘 완료되었으면 이제 SSH 서비스가 자동으로 시작됩니다. 이 서비스가 잘 실행되고 있는지 확인하기 위해 system control을 이용하여 status를 확인해보겠습니다.   
 
 ```bash
-sudo apt-get update
-sudo apt-get install openssh-server
+sudo systemctl ssh status
 ```
 <img src="../../../assets/images/Linux/2024-01-16-ssh Connect/ssh 2.jpg" alt="ssh 2" style="zoom:80%;" />    
 상기와 같이 active(running)상태이면 현재 ssh 서비스가 잘 구동되고 있다는 뜻입니다.   
@@ -53,13 +52,13 @@ sudo ufw allow ssh
 UFW에 대한 규칙이 새롭게 변경되어 설정되었습니다.   
 이제 SSH가 준비 되었고, 접속 준비가 완료되었습니다. 이제 접속을 해보겠습니다.   
 
-<img src="../../../assets/images/Linux/2024-01-16-ssh Connect/ssh 4.jpg" alt="ssh 4" style="zoom:80%;" />    
+<img src="../../../assets/images/Linux/2024-01-16-ssh Connect/ssh 4.JPG" alt="ssh 4" style="zoom:80%;" />    
 ```bash
 ssh 계정@x.x.x.x
 ```
 같은 사설 ip대역에서는 저렇게 외부 접속이 잘 허용되는 것을 확인할 수 있습니다. yes를 통해 key gen을 생성하고 해당 컴퓨터에서의 접속을 허용해주게 됩니다.   
 
-<img src="../../../assets/images/Linux/2024-01-16-ssh Connect/ssh 5.jpg" alt="ssh 5" style="zoom:80%;" />    
+<img src="../../../assets/images/Linux/2024-01-16-ssh Connect/ssh 5.JPG" alt="ssh 5" style="zoom:80%;" />    
 이제 포트포워딩한 사설 ip가 아닌 공용 iP를 통해 접속을 해보겠습니다. 잘 접속이 되는 것을 상기에서 확인할 수 있습니다.   
 
 이제 내 컴퓨터를 서버로 만들기를 성공했습니다. 내 컴퓨터를 우분투로 켜놓기만 한다면, 어디서든 서버처럼 사용을 할 수 있게 되었습니다.
