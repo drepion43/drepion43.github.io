@@ -76,6 +76,13 @@
             </ul>
             <ul>
                 {% for category in site.categories %}
+                    {% if category[0] == "SystemsAndSignals" %}
+                        <li><a href="/categories/SystemsAndSignals" class="">신호 및 시스템({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
                     {% if category[0] == "MathematicalConcepts" %}
                         <li><a href="/categories/MathematicalConcepts" class="">수학 개념 ({{category[1].size}})</a></li>
                     {% endif %}
