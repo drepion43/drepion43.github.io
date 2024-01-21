@@ -32,5 +32,6 @@ apt list --installed | grep [프로그램명]
 저의 에러와 같은 에러가 발생한 분이 올린 문의를 찾아보니 하기의 CLI를 통해 설치를 진행하면 된다고 해서 하기와같이 진행하니 설치가 잘 완료되었습니다.   
 [Nvidia-kerenel Error](https://forums.developer.nvidia.com/t/driver-in-unknown-state-after-attempting-to-install-cuda-ubuntu-22-04/217106)
 ```bash
-sudo apt-get install cuda-toolkit
+sudo apt-get install nvidia-kernel-common-535
+sudo apt-get install nvidia-kernel-source-535
 ```

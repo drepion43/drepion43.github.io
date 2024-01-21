@@ -31,7 +31,7 @@ ubuntu-drivers devices
 내가 원하는 특정 버전을 설치할거면 해당 버전의 NVIDIA-DRIVER를 설치하시면 됩니다. 해당 특정 버전의 확인은 하기의 링크에서 나의 GPU 장비를 검색하면 거기에 맞는 NVIDIA-DRIVER 버전이 나타납니다.   
 [NVIDIA-DRIVER 버전 확인](https://www.nvidia.co.kr/Download/index.aspx?lang=kr)   
 ```bash
-sudo apt-get install nvidia-driver-535
+sudo apt-get install nvidia-driver-525
 ```    
 하지만 그냥 호환되는 어떤 버전이든지 상관이 없다면 자동 설치를 진행하시면 됩니다.   
 ```bash
@@ -68,18 +68,79 @@ uname -m # Architecture 확인
 
 그럼 이제 호환되는 버전인지 확인해보겠습니다. 제가 설치한 NVIDIA-DRIVER와 같은 버전인 535가 빨간색 블록안에 적혀있는 것을 하기의 이미지를 통해 확인할 수 있습니다.   
 <img src="../../../assets/images/Linux/2024-01-20-cudainstall/architecture and os.jpg" alt="architecture and os" style="zoom:80%;" />    
+이제 상기의 이미지 순서대로 CLI를 쳐주시면 설치를 시작합니다.   
 
-저는 현재 외부에서 접속한 형태이므로, local이 아닌, network를 통해 설치를 진행하겠습니다. 설치는 알려주는 CLI를 그대로 따라치시면 되십니다.   
-<img src="../../../assets/images/Linux/2024-01-20-cudainstall/cuda toolkit 3.JPG" alt="cuda toolkit 3" style="zoom:80%;" />    
+<img src="../../../assets/images/Linux/2024-01-20-cudainstall/cuda install 1.jpg" alt="cuda install 1" style="zoom:80%;" />    
+continue를 눌러주시면 됩니다.   
+<img src="../../../assets/images/Linux/2024-01-20-cudainstall/cuda install 2.jpg" alt="cuda install 2" style="zoom:80%;" />    
+accept를 쳐줍니다.   
+<img src="../../../assets/images/Linux/2024-01-20-cudainstall/cuda install 3.png" alt="cuda install 3" style="zoom:80%;" />    
+Driver는 체크를 제거하고 Install을 선택해줍니다. 그럼 설치가 완료되었습니다.
+<img src="../../../assets/images/Linux/2024-01-20-cudainstall/cuda install 4.png" alt="cuda install 4" style="zoom:80%;" />    
 
+상기와 같이 나왔으면 잘 설치가 되었으니 이제 cuDNN을 설치하러 가시면 됩니다.   
 
-
-## CUDA UNINSTALL
+### deb(local)
+만약 상기의 runfile 설치가 되지 않을시에 deb(local)로 설치를 진행하시면 됩니다.   
+```bash
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin
+sudo mv cuda-ubuntu2204.pin /etc/apt/preferences.d/cuda-repository-pin-600
+wget https://developer.download.nvidia.com/compute/cuda/12.2.0/local_installers/cuda-repo-ubuntu2204-12-2-local_12.2.0-535.54.03-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu2204-12-2-local_12.2.0-535.54.03-1_amd64.deb
+sudo cp /var/cuda-repo-ubuntu2204-12-2-local/cuda-*-keyring.gpg /usr/share/keyrings/
+sudo apt-get update
+sudo apt-get -y install cuda
+```
+### CUDA UNINSTALL
 만약 현 CUDA가 설치되어 있는데, 버전이 맞지 않거나 버전을 다운그레이드를 하고 싶으시다면, 우선 이미 설치했던 CUDA를 삭제하셔야 합니다.   
 ```bash
 sudo apt-get purge nvidia*
 sudo apt-get autoremove
 sudo apt-get autoclean
+# cuda만 삭제할시 하기의 CLI만 진행
 sudo rm -rf /usr/local/cuda*
 ```    
 상기의 CLI를 통해 CUDA를 삭제 후, /usr/local/에 들어가셔서 CUDA가 삭제된 것을 확인해보시며 됩니다. 그런 후 다시 CUDA를 재설치 하시면 됩니다.    
+
+## 3. cuDNN INSTALL
+CUDA 설치를 완료했으면, 이제 DeepLearning에 GPU를 사용하기 cuDNN을 설치해줘야합니다. 하기의 링크에서 cuDNN을 설치할 수 있습니다.   
+[cuDNN INSTALL](https://developer.nvidia.com/cudnn)   
+참고로 cuDNN을 설치하기위해서는 NVIDIA 계정이 필요하니, 없으신 분들은 회원가입을 하셔야합니다.   
+
+<img src="../../../assets/images/Linux/2024-01-20-cudainstall/cuDNN 1.JPG" alt="cuDNN 1" style="zoom:80%;" />    
+Install을 선택해줍니다.   
+<img src="../../../assets/images/Linux/2024-01-20-cudainstall/cuDNN 2.JPG" alt="cuDNN 2" style="zoom:80%;" />    
+accept란을 체크해주시면 상기와 같이 나타나며, 여기서 나의 CUDA 버전에 맞는 cuDNN을 선택해줍니다.   
+<img src="../../../assets/images/Linux/2024-01-20-cudainstall/cuDNN 3.JPG" alt="cuDNN 3" style="zoom:80%;" />    
+상기와 같이 나의 OS와 Architecture에 맞는 것을 선택해줍니다.   
+설치된 곳에 들어가시면 tar압축 파일이 존재합니다. 압축을 해제해줍니다.   
+```bash
+tar -xf cudnn-linux-x86_64....tar.xz
+```   
+
+이제 압축을 푼 cuDNN 파일들을 옮겨주겠습니다.   
+```bash
+cd cudnn-linux-...
+sudo cp include/cudnn* /usr/local/cuda/include
+sudo cp lib64/libcudnn* /usr/local/cuda/lib64
+sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+```    
+
+그런 후 symbolc link도 걸어주겠습니다.   
+```bash
+sudo ln -sf /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn_adv_train.so.8.2.1 /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn_adv_train.so.8
+sudo ln -sf /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn_ops_infer.so.8.2.1  /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn_ops_infer.so.8
+sudo ln -sf /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn_cnn_train.so.8.2.1  /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn_cnn_train.so.8
+sudo ln -sf /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn_adv_infer.so.8.2.1  /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn_adv_infer.so.8
+sudo ln -sf /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn_ops_train.so.8.2.1  /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn_ops_train.so.8
+sudo ln -sf /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn_cnn_infer.so.8.2.1 /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn_cnn_infer.so.8
+sudo ln -sf /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn.so.8.2.1 /usr/local/cuda-xx.x/targets/x86_64-linux/lib/libcudnn.so.8
+```    
+
+마지막으로 ~/.bashrc에 추가해주면 nvcc -V까지 확인이 가능해집니다.   
+```bash
+export PATH="/usr/local/cuda-xx.x/bin:$PATH"
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-xx.x/lib64/
+```
+
+## 설치 확인

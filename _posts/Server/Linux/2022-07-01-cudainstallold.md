@@ -13,7 +13,7 @@ date: 2022-07-01
 toc_sticky: true
 ---
 
-
+해당 설치방법은 Ubunutu 20.04버전입니다. 22.04버전으로 다시 업데이트를 진행해서 게시를 했습니다.
 ## 1. INSTALL Nvidia Graphics Driver
 ```bash
 ubuntu-drivers devices
