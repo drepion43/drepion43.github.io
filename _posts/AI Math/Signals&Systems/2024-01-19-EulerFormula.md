@@ -32,7 +32,7 @@ cos(x) =& cos(0) + (-sin(0))x + \frac{-cos(0)}{2}x^2 + \frac{sin(0)}{3!}x^3 + \l
 =& \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n}}{(2n)\!} \newline  
 \end{aligned}   
 
-테일러 급수에 대해 좀 더 알고 싶으시다면, 이전에 포스팅한 <https://drepion43.github.io/statistics/Talyer-expansion/>에 들어가시면 테일러 급수의 증명과정 또한 확인해보실 수 있습니다.   
+테일러 급수에 대해 좀 더 알고 싶으시다면, 이전에 포스팅한 [테일러 급수](https://drepion43.github.io/statistics/Talyer-expansion/)에 들어가시면 테일러 급수의 증명과정 또한 확인해보실 수 있습니다.   
 그럼 이번엔 Euler's Formula을 매클로린 급수꼴로 나타내보겠습니다. 근데 여기서 $e^{j\theta}$를 1번 미분, 2번 미분 3번 미분, 4번 미분 결과는 순서대로 $f^{1}(\theta) = je^{j\theta}, f^{2}(\theta) =-e^{j\theta}, f^{3}(\theta) =-je^{j\theta}, f^{4}(\theta) =e^{j\theta}$로 나타나며, 미분 결과가 반복되는 것을 확인할 수 있습니다.      
 \begin{aligned}    
 e^{j \theta} =& cos (\theta) + j sin(\theta) \newline   
@@ -52,3 +52,10 @@ e^{j \theta} =& cos (\theta) + j sin(\theta) \newline
 ### 예제
 한번 $(-1)^x$를 $Ae^{j\theta}$로 표현을 해보겠습니다. 우선 -1은 크기가 곧 1이라는 의미가 되니 $A=1$을 의미합니다. 그럼 $x=1$일 때인 $e^{j\theta}=-1$이 되려면, $\theta=\pi$가 되어야 합니다. 그럼 $x=2$라고 한다면, $e^{j\theta}=1$이 되려면, $\theta=2 \pi$가 되어야합니다. 즉 $\pi$앞에 계수로 $x$기 붙으면 된다는 의미가 됩니다. 따라서 $(-1)^x=(e^{j\pi})^x$가 되는데, 여기서 $x$가 자연수라고 한다면, $e^{j\pi x}$가 됩니다.   
 만약, $x$가 자연수가 아니라고 한다면, 생기는 문제가 $(e^{j 2\pi})^{\frac{1}{2}}$의 경우, $e^{j\pi}$라면 -1이 되고, $e^{j2\pi} = 1$이니 $1^{\frac{1}{2}}$이 될 수도 있습니다.   
+
+이번에는 $1+e^{j5t}$를 $Ae^{j\theta}$로 표현해보겠습니다.   
+우선 $1+e^{j5t}$는 중심이 $(1,0)$인 점에서 반지름길이가 1인 원이 Complex Coordinate에서 나타납니다.   
+$1+e^{j5t} = 1 + cos(5t) + jsin(5t)$가 되고 여기서 $1 + cos(5t)$가 실수부, $sin(5t)$가 허수부가 됩니다. 크기인 $A$는 실수부 제곱과 허수부 제곱의 제곱근이 되니 하기와같이 됩니다. 즉, 크기는 막대의 크기이니 기존 파스칼 삼각형의 공식을 적용해주는것과 같습니다. 현 좌표가 Complex Coordinate에서 나타내면 $(1 + cos(5t), sin(5t))$가 되기 때문입니다.  
+$A = \sqrt{(1 + cos(5t))^2 + (sin(5t))^2}$    
+그리고 $\theta$인 각도는 "허수부 / 실수부"가 tan가 되니, 각도를 구하기위해 inverse인 arctan을 취해주면 구할 수 있습니다. 하기와 같습니다.   
+$\theta = tan^{-1}(\frac{sin(5t)}{1 + cos(5t)})$ 

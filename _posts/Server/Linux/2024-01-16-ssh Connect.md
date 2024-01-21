@@ -14,7 +14,7 @@ toc_sticky: true
 ---
 # Ubuntu 설치(Linux 계열)
 저는 Ubuntu를 이용할 것이기 때문에 Ubuntu를 이용하고 싶으신 분들은 하기의 링크에 듀얼 부팅 설치하는 법을 정리했으니 먼저 이를 수행해주시면 감사하겠습니다. 만약 Ubuntu가 아닌 Centos, Debian등을 이용하고 싶으신 분들은 iso파일만 자신이 사용하고 싶은 OS를 설치하여 부팅디스크를 만들고, 해당 OS설치하는 법만 다를뿐, 큰 틀인 듀얼 부팅 설정방법은 동일하니 참고하시기에도 좋으실 것 같습니다.   
-<https://drepion43.github.io/linux/ubuntuInstall/>
+[DUAL BOOTING UBUNTU INSTALL](https://drepion43.github.io/linux/ubuntuInstall/)
 
 # 포트포워딩
 우선 cmd창을 켠 후 ipconfig를 통해 이더넷인 나의 IP주소와 공유기의 IP주소를 알아옵니다. 그럼 인터넷창에 공유기 IP주소를 입력하면 하기와 같은 창이 뜨며, 공유기 설정으로 들어갈 수 있습니다.   
