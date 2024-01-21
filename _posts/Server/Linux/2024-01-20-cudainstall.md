@@ -120,10 +120,9 @@ tar -xf cudnn-linux-x86_64....tar.xz
 
 이제 압축을 푼 cuDNN 파일들을 옮겨주겠습니다.   
 ```bash
-cd cudnn-linux-...
-sudo cp include/cudnn* /usr/local/cuda/include
-sudo cp lib64/libcudnn* /usr/local/cuda/lib64
-sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+sudo cp cudnn-*-archive/include/cudnn*.h /usr/local/cuda/include 
+sudo cp -P cudnn-*-archive/lib/libcudnn* /usr/local/cuda/lib64 
+sudo chmod a+r /usr/local/cuda/include/cudnn*.h /usr/local/cuda/lib64/libcudnn*
 ```    
 
 그런 후 symbolc link도 걸어주겠습니다.   
@@ -144,3 +143,25 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-xx.x/lib64/
 ```
 
 ## 설치 확인
+```bash
+/usr/local/cuda-11.8/extras/demo_suite/deviceQuery
+```
+상기의 CLI를 실행시켜줍니다.   
+<img src="../../../assets/images/Linux/2024-01-20-cudainstall/check cuda.jpg" alt="check cuda" style="zoom:80%;" />    
+빨간색 블록친 부분인 
+deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 12.0, CUDA Runtime Version = 11.8, NumDevs = 1, Device0 = NVIDIA GeForce RTX 2060
+Result = PASS
+와 같이 나타나면 잘 설치된 것 입니다.  
+```bash
+nvcc -V
+```
+상기의 CLI를 해주면 하기와같이 나타나실 겁니다.   
+```bash
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2022 NVIDIA Corporation
+Built on Wed_Sep_21_10:33:58_PDT_2022
+Cuda compilation tools, release 11.8, V11.8.89
+Build cuda_11.8.r11.8/compiler.31833905_0
+```
+
+그럼 이제 GPU 환경 세팅이 끝이 났습니다.
