@@ -1,7 +1,7 @@
 ---
 title:  "[Ubuntu]Docker 설치"
 categories: Docker
-tag: [linux, ubuntu,docker]
+tag: [linux, ubuntu, Docker]
 toc: true
 author_profile: false
 sidebar:

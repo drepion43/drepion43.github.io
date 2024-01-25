@@ -1,7 +1,7 @@
 ---
 title:  "[Centos]Off-line Docker 설치"
 categories: Docker
-tag: [linux, centos, docker]
+tag: [linux, centos, Docker]
 toc: true
 author_profile: false
 sidebar:
