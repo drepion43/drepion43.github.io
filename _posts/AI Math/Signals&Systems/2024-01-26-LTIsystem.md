@@ -52,3 +52,17 @@ SuperPosition은 방금 설명한 Scaling과 Additivity의 특성을 모두 만�
 
 ### Time-invariant
 위에서 Linearity에 대해 알아보았으니 이번에는 **Time-invariant**에 대해 알아보겠습니다.   
+Time-invariant는 입력이 time shift가 되었을 때, 출력 또한 동일한 크기만큼 time-shift가 일어나는 것을 의미합니다.    
+그럼 간단한 예시를 통해 설명해보겠습니다. $x_1(t) \rightarrow System \rightarrow y_1(t)$인 시스템이 있다고 가정해보겠습니다. 그럼 이 시스템에 $x_1(t - t_0)$의 입력을 넣어주면 출력은 어떻게 될까요? 출력은 $y_1(t - t_0)$와 같은 출력이 나타납니다. 이런 시스템은 TI(Time-invariant) 시스템이 됩니다. $t_0$만큼 지연된 입력이 들어오면, 출력 또한 $t_0$만큼 지연된 출력이 나타납니다.    
+
+그럼 이번엔 $y(t) = x(-2t + 2)$인 시스템이 있을 때, 이 시스템이 TI(Time-invariant)인지 한번 확인해보겠습니다. 입력 $x(-2t + 2)$는 하기와 같은 시스템의 과정을 거쳐 변경되었습니다.   
+① y축 대칭 : $x(t) \rightarrow x(-t)$   
+② 2배 감소 : $x(-t) \rightarrow x(-2t)$   
+③ 1 shift : $x(-2t) \rightarrow x(-2(t - 1)) = x(-2t + 2)$   
+즉, 이 시스템은 입력으로 $x(t)$가 들어오면, 출력으로 $x(-2t + 2)=y(t)$가 나오는 시스템입니다.   
+
+그럼 이번에 Time Delay를 시킨 입력을 시스템에 넣어보겠습니다. $t_0$만큼 지연된 시간인 $x(t - t_0)$의 입력을 해당 시스템에 넣어보겠습니다. 만약 **시스템이 TI(Time-invariant)라면 출력도 $t_0$만큼 지연된 $y(t - t_0) = x(-2(t - t_0) + 2) = x(-2t + 2t_0 + 2)$가 나올 것 입니다.** 시스템 과정을 상기와 같이 거쳐보겠습니다.   
+① y축 대칭 : $x(t- t_0) \rightarrow x(-t - t_0)$   
+② 2배 감소 : $x(-t - t_0) \rightarrow x(-2t - t_0)$   
+③ 1 shift : $x(-2t - t_0) \rightarrow x(-2(t - 1) - t_0) = x(-2t + 2 - t_0)$   
+상기와 같이 출력으로 $x(-2t + 2 - t_0)$이 나오게됩니다. TI일 경우에 출력에 shift시킨 결과인 $x(-2t + 2t_0 + 2)$와는 다른 결과가 나오니 해당 시스템은 TI가 아니게됩니다.    
