@@ -66,3 +66,4 @@ Time-invariant는 입력이 time shift가 되었을 때, 출력 또한 동일한
 ② 2배 감소 : $x(-t - t_0) \rightarrow x(-2t - t_0)$   
 ③ 1 shift : $x(-2t - t_0) \rightarrow x(-2(t - 1) - t_0) = x(-2t + 2 - t_0)$   
 상기와 같이 출력으로 $x(-2t + 2 - t_0)$이 나오게됩니다. TI일 경우에 출력에 shift시킨 결과인 $x(-2t + 2t_0 + 2)$와는 다른 결과가 나오니 해당 시스템은 TI가 아니게됩니다.    
+
