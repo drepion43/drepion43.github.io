@@ -1,5 +1,5 @@
 ---
-title:  "Convlution 1"
+title:  "Convolution 1"
 categories: SystemsAndSignals
 tag: [theory, Systems, Signals]
 toc: true
@@ -125,7 +125,8 @@ y[n] = \ldots + x[-2]h[n+2] + x[-1]h[n+1] + x[0]h[n] + x[1]h[n-1] + x[2]h[n-2] +
 
 <span style='color:red'>**이 $y$를 $h$로 표현한 것이 바로 Convolution**</span>이 됩니다. 그럼 이것을 정리하면 **Discrete Convolution**의 공식은 하기와 같이 정의됩니다.   
 \begin{aligned}    
-y[n] = \sum_{k= - \infty}^{\infty} x[k] h[n-k]
+y[n] =& \sum_{k= - \infty}^{\infty} x[k] h[n-k] \newline   
+=& x[n] \* h[n]
 \end{aligned}   
 
-이 Convolution의 공식에 모두 LTI의 의미가 담겨있습니다. $x[k]$가 <span style='color:blue'>**Scaling**</span>을 의미하고, $n-k$는 <span style='color:blue'>**Time-invariant**</span>을 담고 있으며, $\sum$이 <span style='color:blue'>**Additivity**</span>을 담고 있습니다. 즉, <span style='color:red'>**Convlution이 LTI의 의미를 담고 있으며, Convolution으로 나타내지는 것은 모두 LTI System이라는 것이며, LTI System은 모두ㅏ Convolution으로 나타날 수 있다는 동치를 의미합니다.**</span>
+이 Convolution의 공식에 모두 LTI의 의미가 담겨있습니다. $x[k]$가 <span style='color:blue'>**Scaling**</span>을 의미하고, $n-k$는 <span style='color:blue'>**Time-invariant**</span>을 담고 있으며, $\sum$이 <span style='color:blue'>**Additivity**</span>을 담고 있습니다. 즉, <span style='color:red'>**Convlution이 LTI의 의미를 담고 있으며, Convolution으로 나타내지는 것은 모두 LTI System이라는 것이며, LTI System은 모두 Convolution으로 나타날 수 있다는 동치를 의미합니다.**</span>
