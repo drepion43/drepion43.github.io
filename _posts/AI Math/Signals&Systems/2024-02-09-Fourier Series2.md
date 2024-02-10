@@ -97,3 +97,5 @@ T_0 & k=r
 
 상기의 수식은 $e^{j k \omega_0 t}$들이 서로 수직하니 서로 indepedent합니다. 그럼 $k$가 무한대이니 이런 무한대 차원들을 무한대로 표현하는 상기의 수식은 무한한 차원에 대해 모두 표현할 수 있게 된다는 의미입니다. 근데 여기서 만약 특정한 점을 상기의 수식으로 표현하려고 한다면 $e^{j k \omega_0 t}$가지고는 표현할 수 없습니다. 앞에 달려있는 Contributor인 $a_k$가 기여할만큼의 값을 줘야 특정한 좌표를 표현할 수 있게됩니다.   
 즉, 서로 Orthogonal한 두 vector $\begin{bmatrix} 1 \newline 0 \end{bmatrix}, \begin{bmatrix} 0 \newline 1 \end{bmatrix}$이 있을 때, $(3, 5)$의 좌표를 나타내려면 각각의 vector앞에 3과 5만큼의 contributor가 필요합니다. 즉 상기의 vector $\begin{bmatrix} 1 \newline 0 \end{bmatrix}, \begin{bmatrix} 0 \newline 1 \end{bmatrix}$가 basis라고 생각을 한다면 이 두 vector $e^{j k \omega_0 t}$와 빗대어 생각을 하시면 됩니다. 즉, $e^{j k \omega_0 t}$가 basis vector가 되고 $a_k$가 contributor가 되어 모든 점을 표현할 수 있게 됩니다. 
+
+이상
