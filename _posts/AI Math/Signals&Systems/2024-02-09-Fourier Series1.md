@@ -48,5 +48,4 @@ x_{T_0}(t) =& \ldots + a_{-2}e^{j(-2)\omega_0 t} + a_{-1}e^{j(-1)\omega_0 t} + a
 ### 깁스 현상(Gibbs Phenomena)
 깁스 현상은 불연속을 포함하는 파형이 푸리에 합성되었을때 불연속 값 근처에서 나타나는 불일치 현상을 의미합니다. 푸리에 합성에 고주파수 성분이 많을수록 불일치는 줄어드나 완전히 없애지는 못합니다. 그런 현상을 깁스 현상이라고 합니다. 
 상기의 영상은 Sinusoids들을 하나씩 계속해서 더했을 때, 검은색 그래프와 닮아가는 것을 알 수 있습니다. 하지만, 약간 튀어나는 부분이 있는데, 이 부분은 잘 안줄어들며 대략 9%정도 된다고 합니다. 보면, 저주파의 성분들을 더할 때는 대략적인 모양을 금방 나타내나 완전히 비슷하게 못하지만, 고주파의 성분까지 더해주면 조금 더 검은색 그래프와 닮아가는 것을 확인할 수 있습니다.    
-<img src="../../../assets/images/Signals&Systems/2024-02-09-Fourier Series1/Gibbs2.gif" alt="Gibbs2" style="zoom:80%;" />    
 <img src="../../../assets/images/Signals&Systems/2024-02-09-Fourier Series1/Gibbs1.png" alt="Gibbs1" style="zoom:80%;" />    
