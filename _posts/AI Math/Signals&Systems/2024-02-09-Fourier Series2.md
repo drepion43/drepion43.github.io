@@ -97,3 +97,49 @@ T_0 & k=r
 
 상기의 수식은 $e^{j k \omega_0 t}$들이 서로 수직하니 서로 indepedent합니다. 그럼 $k$가 무한대이니 이런 무한대 차원들을 무한대로 표현하는 상기의 수식은 무한한 차원에 대해 모두 표현할 수 있게 된다는 의미입니다. 근데 여기서 만약 특정한 점을 상기의 수식으로 표현하려고 한다면 $e^{j k \omega_0 t}$가지고는 표현할 수 없습니다. 앞에 달려있는 Contributor인 $a_k$가 기여할만큼의 값을 줘야 특정한 좌표를 표현할 수 있게됩니다.   
 즉, 서로 Orthogonal한 두 vector $\begin{bmatrix} 1 \newline 0 \end{bmatrix}, \begin{bmatrix} 0 \newline 1 \end{bmatrix}$이 있을 때, $(3, 5)$의 좌표를 나타내려면 각각의 vector앞에 3과 5만큼의 contributor가 필요합니다. 즉 상기의 vector $\begin{bmatrix} 1 \newline 0 \end{bmatrix}, \begin{bmatrix} 0 \newline 1 \end{bmatrix}$가 basis라고 생각을 한다면 이 두 vector $e^{j k \omega_0 t}$와 빗대어 생각을 하시면 됩니다. 즉, $e^{j k \omega_0 t}$가 basis vector가 되고 $a_k$가 contributor가 되어 모든 점을 표현할 수 있게 됩니다. 
+
+## 의문
+### 모든 주기함수 표현
+상기와 같이 서로 Orthogonal한 무하한 vector들로 이루어진 basis를 표현하고 있기 때문에, 거의 대부분의 모든 주기함수를 다 표현할 수 있습니다.   
+하지만, 이전에 vector space를 정의할 때, $\sum_{k= -\infty}^{\infty} a_k e^{j k \omega_0 t}$로 만들어질 수 있는 모든 vector들을 가지고 set을 만들어 vector space를 정의했습니다. 하지만, $\sum_{k= -\infty}^{\infty} a_k e^{j k \omega_0 t}$을 가지고 만들 수 없는 것들은 set에 들어가지 않기 때문에, 그런 것들은 표현이 불가능하게 됩니다.   
+### 1대1 대응
+\begin{aligned}    
+x_{T_0}(t) \Leftrightarrow a_k
+\end{aligned}    
+
+상기는 $x_{T_0}(t)$를 표현하기 위해서는 단 하나의 $a_k$만 존재하냐는 1대1 대응인지를 나타냅니다. 하지만 상기의 수식에서는 1대1 대응이라고 할 수 가 없습니다. 왜냐하면 상기의 수식에 더해 특정 조건이 주어지지 않았을 때는 1대1 대응이라고 얘기할 수 가 없습니다. 상기의 수식이 왜 1대1 대응이 아닌지 확인해보겠습니다.   
+만약 $a_1=1$이고 나머지는 다 0이라고 한다면, $e^{j \omega_0 t}$를 나타냅니다. 근데 여기서 만약 $f_0$가 바뀐다면 $x_{T_0}(t)$는 다른 주기함수가 됩니다. 즉, $f_0$의 값에 따라 $1Hz$의 sinusoid를 표현한 것일수도 있고, $2Hz$짜리 sinusoid를 표현한 것일 수도 있어 1대1 대응이 되지 못합니다.    
+하지만, 여기서 **$T_0$가 주어진다면 1대1 대응**이 맞게 됩니다.    
+정리 해보겠습니다.    
+만약 <span style='color:red'>**푸리에 급수에서 $T_0$가 주어진다면 1대1 대응이 되지만, 주어지지 않는다면 푸리에 급수는 1대1 대응이 아닙니다.**</span>  
+
+## Contributor $a_k$
+이전까지 푸리에 급수에 대해 알아보았습니다. 푸리에 급수는 하기와 같이 정의됩니다.   
+\begin{aligned}    
+x_{T_0} (t) = \sum_{k= -\infty}^{\infty} a_k e^{j k \omega_0 t}
+\end{aligned}   
+
+그럼 여기서 주기함수 $x_{T_0}(t)$를 잘 표현하려면 Contributor인 $a_k$가 얼마나 잘 쓰여야 잘 표현할 수 있는지를 알아야합니다. 그럼 이번에는 $a_k$를 어떻게 구하는지에 대해 알아보겠습니다.   
+
+<br>
+푸리에 급수 수식 양번에 $e^{jr \omega_0 t}$를 inner product의 내적을 해보겠습니다.   
+\begin{aligned}    
+<a(t), b(t)> =& \int_{T_0} a(t)b^{\*}(t) dt \newline   
+\int_{T_0} x_{T_0}(t) e^{-jr \omega_0 t} dt =& \int_{T_0} \sum_{k = - \infty}^{\infty} a_k e^{j(k - r) \omega_0 t} dt \newline   
+\end{aligned}   
+
+이전에 $e^{jk \omega_0 t}$들은 서로 Orthogonal하다고 했던 것을 기억하실 겁니다. 그럼 $\sum_{k = - \infty}^{\infty} a_k e^{j(k - r) \omega_0 t}$에서 $k \neq r$인 경우에는 서로 적분한 값이 모두 0으로 변할테고, $k = r$인 경우에만 0이 아닌 값이 나타날 것 입니다. 하지만 $k=r$인 경우에는 $e^{j(k - r) \omega_0 t} = 1$이 도고 결국에 우변의 수식은 $\int_{T_0} a_r dt = a_r T_0$만 남게될 것 입니다.그럼 $a_r$을 구하기 위해 좌변으로 $T_0$을 넘겨주면 됩니다. 하기에 수식을 전개해보겠습니다.   
+\begin{aligned}    
+\int_{T_0} x_{T_0}(t) e^{-jr \omega_0 t} dt =& \int_{T_0} \sum_{k = - \infty}^{\infty} a_k e^{j(k - r) \omega_0 t} dt \newline   
+=& \int_{T_0} a_r dt \newline  
+=& a_r T_0 \newline   
+a_r =& \frac{1}{t_0} \int_{T_0} x_{T_0}(t) e^{-jr \omega_0 t} dt
+\end{aligned}   
+
+최종적으로 Contributor를 구하는 식은 $a_r = \frac{1}{t_0} \int_{T_0} x_{T_0}(t) e^{-jr \omega_0 t} dt$이 됩니다. 그럼 $a_r$ 식을 inner prodcut로 표현해보겠습니다.   
+\begin{aligned}    
+a_r =& \frac{1}{t_0} \int_{T_0} x_{T_0}(t) e^{-jr \omega_0 t} dt \newline   
+a_r =& \frac{1}{T_0} <x_{T_0}(t), e^{jr \omega_0 t}> \newline  
+\end{aligned}   
+
+한번 inner product의 내적으로 생각을 해보겠습니다. 그러면 $x_{T_0}(t)$의 vector를 $e^{jr \omega_0 t}$의 vector로 projection을 시켜주는 것 입니다. 즉, <span style='color:blue'>**$x_{T_0}(t)$의 vector가 $e^{jr \omega_0 t}$의 vector의 방향 성분과 얼마나 닮았는가**</span>를 나타내게 됩니다. 그럼 $e^{jk \omega_0 t}$와 inner product를 한다고 한다면, $x_{T_0}(t)$가 $e^{jk \omega_0 t}$와 얼마나 닮았는지를 나타낸다는 것 입니다. 근데 여기서 $e^{jr \omega_0 t} \bot e^{jk \omega_0 t}$이며 basis이기 때문에 크기는 둘다 1입니다. 즉, <span style='color:red'>**$a_k$나 $a_r$은 $x_{T_0}(t)$와 각각의 basis인 $e^{jk \omega_0 t}$와 $e^{jr \omega_0 t}$와 얼마나 닮았는지를 나타내는 값**</span>이 됩니다. 
