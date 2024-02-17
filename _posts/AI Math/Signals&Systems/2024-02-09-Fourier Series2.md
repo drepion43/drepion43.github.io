@@ -143,3 +143,26 @@ a_r =& \frac{1}{T_0} <x_{T_0}(t), e^{jr \omega_0 t}> \newline
 \end{aligned}   
 
 한번 inner product의 내적으로 생각을 해보겠습니다. 그러면 $x_{T_0}(t)$의 vector를 $e^{jr \omega_0 t}$의 vector로 projection을 시켜주는 것 입니다. 즉, <span style='color:blue'>**$x_{T_0}(t)$의 vector가 $e^{jr \omega_0 t}$의 vector의 방향 성분과 얼마나 닮았는가**</span>를 나타내게 됩니다. 그럼 $e^{jk \omega_0 t}$와 inner product를 한다고 한다면, $x_{T_0}(t)$가 $e^{jk \omega_0 t}$와 얼마나 닮았는지를 나타낸다는 것 입니다. 근데 여기서 $e^{jr \omega_0 t} \bot e^{jk \omega_0 t}$이며 basis이기 때문에 크기는 둘다 1입니다. 즉, <span style='color:red'>**$a_k$나 $a_r$은 $x_{T_0}(t)$와 각각의 basis인 $e^{jk \omega_0 t}$와 $e^{jr \omega_0 t}$와 얼마나 닮았는지를 나타내는 값**</span>이 됩니다. 
+
+
+## 의문2
+이제 마지막으로 **왜 푸리에 급수는 Complex Sinusoids로 나타냈는가**에 대해 알아보겠습니다. 이전에 이에 대한 답변으로 Complex 주기 신호까지 표현하고 싶기 때문이라고 말했습니다. 하지만, 추가적으로 사용하는 이유는 $e^{j \omega_0 t}$는 <span style='color:red'>**Eigen Function**</span>이기 때문입니다.   
+
+한번 예시를 들어 설명해보겠습니다. $e^{j \omega_0 t }$가 입력이라고 가정을 하고 입력을 Impulse Response인 $h(t)$에 넣어보았다고 가정해보겠습니다. 그럼 Convolution 연산이 일어나 $e^{j \omega_0 t} \* h(t) = \int h(\tau) e^{j \omega_0 (t - \tau)} d\tau$과 같이 나타납니다. 하기에 수식으로 정리해보겠습니다.   
+\begin{aligned}    
+e^{j \omega_0 t} \* h(t) =& \int h(\tau) e^{j \omega_0 (t - \tau)} d\tau \newline   
+=& e^{j \omega_0 t} \int h(\tau) e^{-j \omega_0 \tau} d\tau \newline   
+\end{aligned}   
+
+여기서 $e^{j \omega_0 t}$를 $x(t)$라고 했을 때, 입력을 넣어서 입력이 그대로 나오는 현상을 상기의 수식에서 확인할 수 있습니다. 그럼 뒤에 있는 $\int h(\tau) e^{-j \omega_0 \tau} d\tau$부분은 자연스럽게 $t$에 대한 함수가 아니게되니 상수로 취급이 되며 Eigen Function 꼴이 나타나게됩니다. 즉, eigen vector는 $e^{j \omega_0 t}$가 되고 eigen value는 $\int h(\tau) e^{-j \omega_0 \tau} d\tau$가 됩니다.  
+
+그럼 이번에는 입력을 $\sum_{k = - \infty}^{\infty} a_k e^{j k \omega_0 t}$로 바꿔 Impulse Response에 넣어보겠습니다.   
+\begin{aligned}    
+\sum_{k = - \infty}^{\infty} a_k e^{j k \omega_0 t} \* h(t) =& \sum_{k = -\infty}^{\infty} \int h(\tau) e^{- j \omega_0 \tau} d\tau e^{j k \omega_0 t} \newline   
+=& \sum_{k= - \infty}^{\infty} a_k H(k \omega_0) e^{jk \omega_0 t} \quad (\int h(\tau) e^{- j \omega_0 \tau} d\tau = H(k \omega_0)) \newline      
+\end{aligned}    
+
+이번에는 입력에서 contributor가 $a_k$인 것을 집어 넣었더니 contributor가 $a_k H(k \omega_0)$로 바뀌어 나타났습니다. 즉, $H(k \omega_0)$를 잘 조절해서 내가 원하는 주기함수로 나타낼 수 있다는 의미가 됩니다. 
+
+### 예시
+방금 설명한 이 $H(k \omega_0)$가 어떻게 실생활에서 이용되고 있는지 통신 예시를 들어 설명해보겠습니다. 저희는 현재 TV, 라디오, 핸드폰등을 동시에 사용할 수 있습니다. 하지만, 이런 제품들을 통신이 필수로 필요한데 이 통신에는 주파수가 들어와야합니다. 그럼 이 3개의 제품을 동시에 사용할려면 각각의 제품들 간의 주파수에서 간섭이 일어나지 않아야합니다. 이렇게 간섭이 일어나지 않으면서 동시에 쭈욱 이용할 수 있는 방법이 각 제품들이 서로 다른 주파수 대역을 사용하는 방법입니다. 이 주파수 대역 낮으며 사람이 들을 수 있는 대역이라면 우리는 항상 무슨 소리를 들으면서 살아야할 것 입니다. 이런경우는 매우 불편하기 때문에 사람이 들을 수 없으면 불가시할 수 있는 주파수 대역으로 이런 통신이 현재 지금도 이루어지고 있습니다. 그럼 여기서 의문을 가질 수 있을 겁니다. 각 제품들읠 주파수가 다 흐르고 있는데 어떻게  TV는 TV에 대한 하나의 주파수만 받을 수 있을까라는 생각을 하실 겁니다. 그 이유가 바로 $H(k \omega_0)$에 있습니다. $H(k \omega_0)$를 통해 저희가 TV 리모컨을 통해 TV를 켰을 때, TV에 대한 주파수대역만 제외하고 나머지는 모두 0으로 필터링을 하는 $H_{TV}(k \omega_0)$가 있기 때문이라고 설명할 수 있습니다. 즉, 이퀄라이저를 통해 불필요한 주파수는 죽이고 필요한 주파수만 이용을 하는 방법을 사용한다고 생각하시면 됩니다.
