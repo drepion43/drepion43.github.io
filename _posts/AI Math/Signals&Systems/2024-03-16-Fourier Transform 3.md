@@ -58,3 +58,90 @@ a_k = \frac{1}{T_0} \int_{- \frac{T_0}{2}}^{\frac{T_0}{2}} \delta(t) e^{- j k\om
 \end{aligned}   
 
 $a_k$를 구했으니 이제 푸리에 변환을 해주면 됩니다. 즉, delta train의 푸리에 변환은 $\sum_{k = -\infty}^{\infty} \frac{2 \pi}{T_0} \delta(\omega - k \omega_0)$가 된다는 의미가 됩니다. 
+
+## 미분함수 FT
+기존 푸리에 역변환의 수식은 하기와 같이 정의됩니다. 여기서 좌측은 시간축에 대한 푸리에 변환전 함수이고, 우측의 $\omega$축에 대한 $X(\omega)$는 푸리에 변환을 한 함수가 됩니다. 그럼 좌측 시간축에 대한 함수를 시간에 대해 미분을 한 결과는 하기와 같이 $j\omega X(\omega)$가 됩니다.   
+\begin{aligned}    
+x(t) =& \frac{1}{2 \pi} \int_{- \infty}^{\infty} X(\omega) e^{j \omega t} d \omega \newline    
+\frac{d}{dt}x(t) =& \frac{1}{2 \pi} \int_{- \infty}^{\infty} j \omega X(\omega) e^{j \omega t} d \omega \newline    
+\end{aligned}    
+
+한가지 예를 들어보겠습니다. 1에 대한 푸리에 변환은 방금 전에 배웠던 $e^{j k\omega_0 t}$을 푸리에 변환한 결과에서 $\omega_0$이 0에 위치한 디렉 델타 함수이면 됩니다. 즉, $2 \pi \delta(\omega)$가 됩니다. 그럼 1을 미분한 결과인 0의 푸리에 변환은, 방금 배웠던 미분함수 푸리에 변환을 적용하면, $j\omega 2 \pi \delta(\omega)$인 것을 바로 알 수 있습니다. 
+### Impulse Response($h(t)$) 구하기(from FT)
+이전 미분방정식 포스팅에서 LCCDE를 배웠던 것을 기억하실 겁니다. 약간 기억을 되짚어 보기 위해 LCCDE의 수식을 하기에 정의해보겠습니다. $x(t)$는 입력, $y(t)$는 출력입니다.   
+\begin{aligned}    
+\sum_{k=0}^{N} a_k \frac{d^k y(t)}{dt^k} = \sum_{k=0}^{M} b_k \frac{d^k x(t)}{dt^k}
+\end{aligned}    
+
+한 번 예시를 들어 풀어보겠습니다.   
+\begin{aligned}    
+y' + 2y = 3x' + x
+\end{aligned}    
+
+상기와 같은 미분 방정식을 푸리에 변환을 통해 Impulse Response($h(t)$)를 구해보겠습니다.    
+\begin{aligned}    
+y' + 2y =& 3x' + x \newline   
+j\omega Y(\omega) + 2Y(\omega) =& 3 j\omega X(\omega) + X(\omega) \newline   
+\end{aligned}    
+
+$y(t)$는 출력이니 원래 $y(t)$를 구하기 위해선, 입력과 Impulse Response에 대해 convolution을 취해주면 구할 수 있었습니다. 즉, $y(t) = x(t) \* h(t)$입니다. 근데, 이 식을 푸리에 변환으로 바꿔주면, convolution은 그냥 곱으로 나타나집니다. 따라서, $Y(\omega)= X(\omega)H(\omega)$가 됩니다. 그럼 $H(\omega) = \frac{Y(\omega)}{X(\omega)}$가 됩니다.    
+\begin{aligned}    
+j\omega Y(\omega) + 2Y(\omega) =& 3 j\omega X(\omega) + X(\omega) \newline   
+H(\omega) = \frac{Y(\omega)}{X(\omega)} =& \frac{3 j\omega + 1}{j\omega + 2} \newline   
+=& 3 - \frac{5}{j\omega + 2} \newline   
+h(t) =& 3\delta(t) - 5 e^{-2t}u(t)
+\end{aligned}    
+
+$H(\omega)$를 구해준 후, 그 구한 식에서 다시 역푸리에 변환을 해주면, Impulse Response인 $h(t)$를 구할 수 있습니다.    
+
+## Unit Step Function($u(t)$) FT
+단위 계단 함수는 다들 한번씩은 들어보셨을 겁니다. 우선 수식과 함수의 모양은 어떻게 되는지 알아보겠습니다.   
+<img src="../../../assets/images/Signals&Systems/2024-03-16-Fourier Transform 3/unit step function.png" alt="unit step function" style="zoom:80%;" />    
+만약, $u(t - a)$의 경우, 해당 그래프를 a만큼 평행 이동 시키면 됩니다.   
+그럼 이제 $u(t)$에 대해 푸리에 변환을 해보겠습니다.   
+근데 그냥 $u(t)$에 대해 하는 것이 아닌 $lim_{a \rightarrow 0} e^{-at}u(t)$에 대해 푸리에 변환을 해보겠습니다.($a$는 양수) 그 이유는, $lim_{a \rightarrow 0} e^{-at}$를 곱해주어도 $a \rightarrow 0$이기 때문에, 결국에 $u(t)$와 유사하게 나타나기 때문입니다.    
+\begin{aligned}    
+\int_{- \infty}^{\infty} lim_{a \rightarrow 0} e^{-at}u(t) e^{- j \omega t} dt =& lim_{a \rightarrow 0} \int_{0}^{\infty} e^{-at} e^{- j \omega t} dt \newline   
+=& lim_{a \rightarrow 0} \frac{e^{-(a + j \omega)t} |_{0}^{\infty}}{-a -j\omega} \newline   
+\end{aligned}  
+
+
+여기서 $e^{-at} e^{-j \omega t}$를 살펴보겠습니다. $a$는 항상 양수이며 $t$값이 증가하면 $e^{-at}$는 0으로 수렴합니다. $e^{-j \omega t}$는 $t$의 값과 상관없이 항상 크기가 1입니다. 따라서, $e^{-at}$에 의해 결국 0으로 수렴하게 됩니다. 계속해서 전개해보겠습니다.   
+\begin{aligned}    
+lim_{a \rightarrow 0} \frac{e^{-(a + j \omega)t}}{-a -j\omega} \newline   
+= lim_{a \rightarrow 0} \frac{1}{a + j\omega} \newline
+\end{aligned}  
+
+근데 여기서 $a \rightarrow 0$이지만, $\omega = 0$인 지점에서 $a \rightarrow 0$으로 보내면, 좌극한과 우극한 값이 다르므로, 극한 값이 존재하지 않게됩니다. 따라서 분모, 분자에 $a-j \omega$를 곱해주는 트릭을 취해보겠습니다.    
+\begin{aligned}    
+lim_{a \rightarrow 0} \frac{1}{a + j \omega} =& lim_{a \rightarrow 0} \frac{1 (a-j \omega)}{(a + j\omega)(a-j \omega)} \newline   
+=& lim_{a \rightarrow 0} \frac{a^2}{a^2 + \omega^2} - \frac{j \omega}{a^2 + \omega^2} \newline   
+=& f(\omega) + \frac{1}{j \omega}
+\end{aligned}    
+
+$lim_{a \rightarrow 0} \frac{a^2}{a^2 + \omega^2}$는 $f(\omega)$라 두고, $a = 0$을 대입했습니다. 그럼 $f(\omega) = f(- \omega)$인 것을 바로 알 수 있습니다.   
+따라서, $u(t)$의 푸리에 변환은 $f(\omega) + \frac{1}{j \omega}$인 것을 알 수 있습니다. 그럼 이제 $f(\omega)$를 구해봐야할 것 같습니다.    
+\begin{aligned}    
+u(t) 's \; FT =& f(\omega) + \frac{1}{j \omega} \newline   
+u(-t) 's \; FT =& f(- \omega) - \frac{1}{j \omega} \newline   
+u(t) + u(-t) =& f(\omega) + f(- \omega) = 2f(\omega) \newline   
+1 =& 2 \pi \delta(\omega) =& 2f(\omega) \newline   
+f(\omega) = \pi \delta(\omega)
+\end{aligned}    
+
+상기의 수식에서 $u(t) + u(-t) = 1$이라고 정의를 했지만, 사실은 $t=0$인 지점에서는 값을 갖고 있지 않습니다. 근데, $t=0$에서 0.5를 갖는다고 가정을 해보겠습니다. 그럼 $u(t)$의 푸리에 변환식은 $\pi \delta(\omega) + \frac{1}{j \omega}$가 됩니다.   
+
+## 적분의 FT
+$\int_{- \infty}^{t} x(\tau) d\tau$에 대해 푸리에 변환을 해보겠습니다.   
+우선 $\int_{- \infty}^{t} x(\tau) d\tau$을 풀어보겠습니다. 해당 식을 보면, 음의 무한대에서 $\tau$까지에 대해 적분을 합니다. 그럼 $x(\tau)$ 함수에서 $\tau$ 시점 이전까지는 $x(\tau)$값을 가지고, 이후부터는 0을 가진다면 해당 식을 만족할 수 있을 것 같습니다. 이런 함수는 $u(\tau)$를 평행이동 시키면 나타낼 수 있을 것 같습니다. 한번 $u(t - \tau)$와 $x(\tau)$를 곱해주면, 음의 무한대에서 $\tau$까지의 값만 가지는 것을 알 수 있습니다. 
+\begin{aligned}    
+\int_{- \infty}^{t} x(\tau) d\tau =& \int_{- \infty}^{\infty} x(\tau)u(t - \tau) d\tau
+\end{aligned}   
+
+근데, $\int_{- \infty}^{\infty} x(\tau)u(t - \tau) d \tau$ 이 식은 $x(t) \* u(t)$와 동일합니다.   
+\begin{aligned}    
+\int_{- \infty}^{t} x(\tau) d\tau =& \int_{- \infty}^{\infty} x(\tau)u(t - \tau) d\tau \newline   
+=& x(t) \* u(t)
+\end{aligned}  
+
+즉, convolution에 대해 푸리에 변환을 취해주면 됩니다. $X(\omega)U(\omega)$가 되니, 이전에 $U(\omega) = \pi \delta(\omega) + \frac{1}{j \omega}$을 알아보았습니다. 여기에 $X(\omega)$만 곱해주면 되니, $X(\omega)U(\omega) = \pi \delta(\omega)X(\omega) + \frac{X(\omega)}{j \omega}$를 알 수 있습니다.
