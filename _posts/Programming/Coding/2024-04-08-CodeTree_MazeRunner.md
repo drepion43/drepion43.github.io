@@ -88,10 +88,10 @@ for _ in range(m):
 exit_x, exit_y = map(int, input().split())
 board[exit_x - 1][exit_y - 1] = -2
 
-
 # 상하 좌우 (상하가 우선)
-dx =[-1, 1, 0, 0]
+dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
+
 
 def erase_player(_board, _players, ex, ey):
     for x, y in _players:
@@ -100,14 +100,17 @@ def erase_player(_board, _players, ex, ey):
         _board[x][y] = 0
     return _board
 
+
 def setting_player(_board, _players):
     for x, y in _players:
         _board[x][y] = -1
     return _board
 
+
 # 시계방향 90도 부분 회전(현재 전체 보드판, 정사각형 가장 왼쪽상단 좌표, 정사각형 길이)
-def rotate(sy, sx, length, _board):
+def rotate(sy, sx, length, _board, _players):
     tmp_board = copy.deepcopy(_board)
+    update_player = copy.deepcopy(_players)
     # 정사각형을 시계방향으로 90도 회전
     for y in range(sy, sy + length):
         for x in range(sx, sx + length):
@@ -117,12 +120,19 @@ def rotate(sy, sx, length, _board):
             ry, rx = ox, length - oy - 1
             # 3단계 : 다시 (sy,sx)를 더해줌
             tmp_board[sy + ry][sx + rx] = _board[y][x]
-    return tmp_board
+            for idx, (px, py) in enumerate(_players):
+                # sx sy : 0, 1, length : 2
+                # x, y : (1, 2) -> ox, oy : (1, 1) -> rx, ry : (1, 0)
+                if px == y and py == x:
+                    update_player[idx] = [sy + ry, sx + rx]
+
+
+    return tmp_board, update_player
+
 
 # 벽 값 감소 및 출구 좌표 획득 및 플레이어 위치 탐색
 def minus_wall(_board, sx, sy, s_length):
     ex, ey = -1, -1
-    update_players = []
     for x in range(n):
         for y in range(n):
             # 벽 감소
@@ -131,30 +141,29 @@ def minus_wall(_board, sx, sy, s_length):
             # 출구 좌표
             elif _board[x][y] == -2:
                 ex, ey = x, y
-            elif _board[x][y] == -1:
-                update_players.append([x, y])
+    return ex, ey
 
-    return ex, ey, update_players
 
 # 참가자와 출구까지 거리, or 사용좌 좌표
 def get_dis(ex, ey, cx, cy):
     return abs(ex - cx) + abs(ey - cy), cx, cy
+
 
 # 정사각형 좌측 상단 좌표 얻기
 def get_square(ex, ey, _players):
     global n
     min_dis = []
     for x, y in _players:
-        dis, _, _ = get_dis(ex, ey, x, y)
+        dis = max(abs(x - ex), abs(y - ey))
         min_dis.append([dis, x, y])
     # 거리가 가장 가까우며, x값이 작은것, y값이 작은것 순
-    min_dis.sort(key=lambda x:(x[0], x[1], x[2]))
+    min_dis.sort(key=lambda x: (x[0], x[1], x[2]))
     # , 출구에서 가장가까운 사람 좌표
-    _, tx, ty = min_dis[0]
+    square_lengths, _, _ = min_dis[0]
     # 정사각형 꼭지점 좌표 얻기
-    square_lengths = max(abs(tx - ex), abs(ty - ey))
-    # sx, sy = min(tx, ex), min(ty, ey)
-    
+    # square_lengths = max(abs(tx - ex), abs(ty - ey))
+    # print('choice person', square_lengths)
+
     ################ 사각형 고르기 다시 고민
     # (0,0)부터 정사각형 길이를 아니 출구와 가장 가까운 참가자를 포함하는 정사각형 좌상단 좌표 찾기
     is_find = False
@@ -167,11 +176,13 @@ def get_square(ex, ey, _players):
             left_up_x, left_up_y = x, y
             right_down_x, right_down_y = x + square_lengths, y + square_lengths
             if left_up_x <= ex <= right_down_x and left_up_y <= ey <= right_down_y:
-                if left_up_x <= tx <= right_down_x and left_up_y <= ty <= right_down_y:
-                    is_find = True
-                    sx, sy = x, y
-    
+                for px, py in _players:
+                    if left_up_x <= px <= right_down_x and left_up_y <= py <= right_down_y:
+                        is_find = True
+                        sx, sy = x, y
+
     return square_lengths + 1, sx, sy
+
 
 # 참가자 이동 가능 확인 및 이동
 def move(ex, ey, _board, _players):
@@ -200,6 +211,7 @@ def move(ex, ey, _board, _players):
     # 참가자들이 이동한 거리
     return players_move, _players, update_players
 
+
 # 참가자 출구 도착인지 확
 def arrive_player(ex, ey, _players):
     update_player = []
@@ -211,49 +223,54 @@ def arrive_player(ex, ey, _players):
             update_player.append(player)
     return update_player
 
+
 def start(ex, ey, k, _board, _players):
     global n
     total_dis = 0
     cur_ex, cur_ey = ex, ey
     while k > 0:
+        # print(cur_ex+1, cur_ey+1)
         # 이동 확인 및 이동 거리 측정
-        for x in range(n):
-            print(_board[x])
-        print(total_dis)
-        print('before move', _players)
+        # for x in range(n):
+        #     print(_board[x])
+        # print('before move', _players)
         move_dis, before_players, _players = move(cur_ex, cur_ey, _board, _players)
         total_dis += move_dis
-        print('after move', _players)
+        # print('after move', _players)
+        # print('move score', total_dis)
         # 이전 참가자들 좌표 삭제
         _board = erase_player(_board, before_players, cur_ex, cur_ey)
-        print('erase board')
-        for x in range(n):
-            print(_board[x])
+        # print('erase board')
+        # for x in range(n):
+        #     print(_board[x])
         # 탈출할 플에이어는 탈출
         _players = arrive_player(cur_ex, cur_ey, _players)
-        print('update player', _players)
+        # print('update player', _players)
         # 이동한 참가자들 좌표 설정
         _board = setting_player(_board, _players)
         if len(_players) == 0:
             break
-        print('after move')
-        for x in range(n):
-            print(_board[x])
+        # print('after move')
+        # for x in range(n):
+        #     print(_board[x])
 
         # 정사각형 구하기
         s_lengths, sx, sy = get_square(cur_ex, cur_ey, _players)
         # 정사각형 회전
-        _board = rotate(sx, sy, s_lengths, _board)
+        _board, _players = rotate(sx, sy, s_lengths, _board, _players)
+        # print('choice square', sx, sy, s_lengths)
+        # print('after rotate player', _players)
         # 벽 감소 및 변경된 출구 좌표
-        cur_ex, cur_ey, _players = minus_wall(_board, sx, sy, s_lengths)
+        cur_ex, cur_ey = minus_wall(_board, sx, sy, s_lengths)
         # 플레이어가 모두 탈출했는지 확인
         if len(_players) == 0:
             break
-        print()
+        # print()
 
         k -= 1
     print(total_dis)
     print(cur_ex + 1, cur_ey + 1)
 
-start(exit_x-1, exit_y-1, k, board, players)
+
+start(exit_x - 1, exit_y - 1, k, board, players)
 ```
