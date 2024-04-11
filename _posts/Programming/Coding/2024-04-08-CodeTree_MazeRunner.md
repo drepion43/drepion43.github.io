@@ -274,3 +274,128 @@ def start(ex, ey, k, _board, _players):
 
 start(exit_x - 1, exit_y - 1, k, board, players)
 ```
+
+
+
+
+
+
+
+
+```python
+import copy
+
+def get_distance(x_1, y_1, x_2, y_2):
+    return abs((x_1 - x_2)^2) + abs((y_1 - y_2)^2)
+
+rdx = [-1, 0, 1, 0 ,1 ,1, -1, -1]
+rdy = [0, 1, 0, -1, 1, -1, 1, -1]
+
+# 산타는 상우하좌가 우선
+sdx = [-1, 0, 1, 0]
+sdy = [0, 1, 0, -1]
+
+# 산타의 움직임
+def move_santas(_santas, _x, _y, _board):
+    global d, answer
+    tmp_santas = copy.deepcopy(_santas)
+    tmp_santas.sort(key=lambda x:x[0])
+    new_santas = []
+    santa_num = len(tmp_santas)
+    for idx, x, y, is_stern in tmp_santas:
+        # 기절 산타 패스
+        if is_stern == 0:
+            continue
+        # 탈락 산타
+        if x == -1:
+            continue
+        # 산타 이동
+        is_move = False
+        cur_dis = get_distance(_x, _y, x, y)
+        d = -1
+        for i in range(4):
+            nx, ny = x + sdx[i], y + sdy[i]
+            # 게임판 내부 및 산타가 없는 경우
+            if 0 <= nx < n and 0 <= ny < n and _board[nx][ny] != -1:
+                new_dis = get_distance(_x, _y, nx, ny)
+                # 가까워지는 방향이 있어 움직임
+                if new_dis < cur_dis:
+                    is_move = True
+                    d = i
+                    new_santas.append([idx, nx, ny, is_stern])
+                    break
+        # 산타가 움직여 충돌났을 시(점수 획득)
+        if is_move:
+            if nx == _x and ny == _y:
+                answer += d
+                _d = (d + 2) % 4
+                chg_santas = crush_santa(idx, nx, ny, _d, _board)
+                for
+    return new_santas
+
+
+# 루돌프의 움직임
+def move_rodol(_x, _y, _santas, _board):
+    distances = []
+    for n, x, y in _santas:
+        dis = get_distance(_x, _y, x, y)
+        distances.append([dis, x, y])
+    # 가장 가까운 산타 선택
+    distances.sort(key=lambda x:(x[0], x[1], x[2]))
+    # 루돌프 움직이기
+    riveerdeer = []
+    result_x, result_y, result_d = -1, -1, -1
+    s_dis, _sx, _sy = distances[0]
+    for d in (8):
+        nx, ny = _x + rdx[d], _y + rdy[d]
+        if 0 <= nx < n and 0 <= ny < n:
+            cur_dis = get_distance(nx, ny, _sx, _sy)
+            # 더 가까워진다면
+            if cur_dis < s_dis:
+                result_x, result_y, result_d = nx, ny, d
+                break
+    if result_x != -1:
+        ############# 루돌프의 충돌을 고려
+
+
+        _board[_x][_y] = 0
+        _board[result_x][result_y] = -2
+        riveerdeer.append([result_x, result_y, result_d])
+    return riveerdeer
+
+# 충돌(산타가 움직임)
+def crush_santa(idx, _x, _y, _d, _board):
+    x, y = _x + _d * sdx[_d], _y + _d * sdy[_d]
+    tmp_santas = []
+    tmp_santas.append([idx, x, y])
+    # 상호작용
+    while 0 <= x < n and 0 <= y < n and _board[x][y] > 0:
+        _idx = _board[x][y]
+        x = x + sdx[_d], _y + sdy[_d]
+        tmp_santas.append([_idx, x, y])
+    return tmp_santas
+
+def update_santas(origin_santas, tmp_santas):
+
+
+
+# 상호작용(산타끼리 충돌)
+
+
+# 좌표, 방향, 기절상태
+
+n, m, p, c, d = map(int, input().split())
+board = [[0]* n for _ in range(n)]
+r_x, r_y = map(int, input().split())
+board[r_x][r_y] = -2
+
+santas = []
+for i in range(p):
+    pn, px, py = map(int, input().split())
+    # 산타 번호, 산타 좌표, 기절유무(0: 기절, 1:기절X)
+    santas.append([pn, px, py, 0])
+    board[px][py] = pn
+
+
+
+```
