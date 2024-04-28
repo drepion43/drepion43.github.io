@@ -76,6 +76,13 @@
             </ul>
             <ul>
                 {% for category in site.categories %}
+                    {% if category[0] == "ConvexProblem" %}
+                        <li><a href="/categories/ConvexProblem" class="">최적화 문제 ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
                     {% if category[0] == "SystemsAndSignals" %}
                         <li><a href="/categories/SystemsAndSignals" class="">신호 및 시스템({{category[1].size}})</a></li>
                     {% endif %}
