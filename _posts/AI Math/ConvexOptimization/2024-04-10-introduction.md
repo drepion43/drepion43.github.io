@@ -1,14 +1,14 @@
 ---
 title:  "Introduction"
 categories: ConvexProblem
-tag: [theory, math]
+tag: [theory, math, Optimization]
 toc: true
 author_profile: false
 sidebar:
     nav: "docs"
 use_math: true
 comments: true
-date: 2024-04-28
+date: 2024-04-10
 toc_sticky: true
 ---
 
