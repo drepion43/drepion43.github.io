@@ -7,7 +7,7 @@ author_profile: false
 sidebar:
     nav: "docs"
 use_math: true
-excerpt: 
+excerpt: DNN구조와 DNN 연산 방법
 comments: true
 date: 2024-05-05
 toc_sticky: true
