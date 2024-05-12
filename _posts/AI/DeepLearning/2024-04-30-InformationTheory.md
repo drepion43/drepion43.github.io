@@ -47,9 +47,9 @@ H(x) =& - \sum_i p_i \; log (p_i) \newline \; : \: Entropy \newline
 ## KL-Divergence
 그럼 이제 KL-Divergence에 대해 알아보겠습니다. 이전까지 Entropy와 Cross-Entropy에 대해 알아보았습니다. KL-Divergence은 이 Entropy와 Cross-Entropy의 개념을 이용한 것 입니다. Cross-Entropy가 모델이 잘못 예측한 확률 분포이고, Entropy는 실제 확률 분포라고 했습니다. 그리고 Entropy는 최소한의 자원량이니 잘못 예측한 Cross-Entropy가 당연히 Entropy보다 클 것 입니다. 그럼 여기서 KL-Divergence는 이 Cross-Entropy에서 Entropy를 빼주면 그 차이가 바로 **모델이 얼마나 잘못 예측했는가**를 의미하게 될 것 입니다. 하기에 수식을 표기하겠습니다.   
 \begin{aligned}    
-H_q(p) =& - \sum_i p_i \; log(q_i) \; : \: Cross-Entropy \newline   
-H(x) =& - \sum_i p_i \; log (p_i) \newline \; : \: Entropy \newline   
-KL-Divergence =& Cross-Entropy - Entropy \newline   
+H_q(p) =& - \sum_i p_i \; log(q_i) \; : \; Cross-Entropy \newline   
+H(x) =& - \sum_i p_i \; log (p_i) \; : \; Entropy \newline   
+KL-Divergence =& Cross \; Entropy - Entropy \newline   
 D_{KL}(p || q) =& H_q(p) - H(x) \newline   
 =& - \sum_i p_i \; log(q_i) + \sum_i p_i \; log (p_i) \newline   
 =& \sum_i p_i log (\frac{p_i}{q_i})
