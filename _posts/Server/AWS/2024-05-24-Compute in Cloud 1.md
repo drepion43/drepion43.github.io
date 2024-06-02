@@ -1,5 +1,5 @@
 ---
-title:  "[AWS]AWS Cloud Practitioner Essentials 1"
+title:  "[AWS]Compute in Cloud 1"
 categories: AWS
 tag: [AWS, Cloud]
 toc: true
@@ -7,7 +7,7 @@ author_profile: false
 sidebar:
     nav: "docs"
 use_math: true
-excerpt: AWS
+excerpt: AWS Cloud Practitioner Essentials
 comments: true
 date: 2024-05-24
 toc_sticky: true
@@ -118,5 +118,3 @@ Savings Plan은 일정한 사용량을 약정하는 대가로 EC2를 저렴하�
 <br>
 <span style='color:blue'>스팟 인스턴스</span>    
 시작 및 종료 시간이 자유롭거나 중단을 견딜 수 있는 워크로드에 적합합니다. 즉, 필요에 따라 시작 및 중지할 수 있는 백그라운드 처리 작업에 적합합니다. **여분의 Amazon EC2 컴퓨팅 용량을 할당받는 스팟 인스턴스**입니다. 따라서 스팟 인스턴스를 요청하더라도 가용가능한 EC2 인스턴스가 없다면 요청이 성공하지 못하기도 합니다. 하지만 이는 온디맨드 대비 대략 90%저렴합니다. 하지만, 스팟 인스턴스의 경우 **AWS가 필요시 언제든 인스턴스의 용량으 회수할 수 있다**입니다. 회수되기 2분전에 경보가 제공됩니다.    
-
-### EC2 크기 조정

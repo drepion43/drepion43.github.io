@@ -1,5 +1,5 @@
 ---
-title:  "[AWS]AWS Cloud Practitioner Essentials 2"
+title:  "[AWS]Compute in Cloud 2"
 categories: AWS
 tag: [AWS, Cloud]
 toc: true
@@ -7,7 +7,7 @@ author_profile: false
 sidebar:
     nav: "docs"
 use_math: true
-excerpt: AWS
+excerpt: AWS Cloud Practitioner Essentials
 comments: true
 date: 2024-05-28
 toc_sticky: true
