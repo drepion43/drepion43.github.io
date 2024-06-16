@@ -22,7 +22,7 @@ toc_sticky: true
 ## 목표
 ① 스토리지 및 데이터베이스의 기본 개념을 요약할 수 있습니다.   
 ② Amazon Elastic Block Store(Amazon EBS)의 이점을 설명할 수 있습니다.   
-③ Amazon Simple Storage Service(Amazon S3)의 이점을 설명할 수 있습니다. 
+③ Amazon Simple Storage Service(Amazon S3)의 이점을 설명할 수 있습니다.    
 ④ Amazon Elastic File System(Amazon EFS)의 이점을 설명할 수 있습니다.   
 ⑤ 다양한 스토리지 솔루션을 요약할 수 있습니다.   
 ⑥ Amazon Relational Database Service(Amazon RDS)의 이점을 설명할 수 있습니다.    
