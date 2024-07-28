@@ -63,5 +63,74 @@ Seq2Seq는 사실상 Transformer의 논문에 나오진 않지만, 많은 분들
 이러한 문제를 해결하기 위해 Transformer는 인코더의 모든 state를 디코더에 참조시키기 위해 **Attention**기법을 이용했습니다.   
 
 #### 3-1.Encoder and Decoder Stacks
-<img src="../../../assets/images/paper/2024-07-25-vanilla_transformer/transformer.jpg" alt="transformer" style="zoom:80%;" />    
+<img src="../../../assets/images/paper/2024-07-25-vanilla_transformer/transformer.JPG" alt="transformer" style="zoom:80%;" />    
+**Encoder**   
+현재 논문에서의 인코더는 $N=6$으로 구성되어있습니다. 각 layer는 2개의 sub-layer로 구성되어있습니다. 첫번째는 Multi-head Self-attention의 layer와 두번째로는 FC Feed Forward layer로 구성되어있습니다. 각 layer모두 주요 layer를 탄 후, 타기 전과의 residual connection을 이룬 후, Layer Normalization을 거칩니다. 즉, 입력 $x$는 $Layernorm(x + SubLayer(x))$로 구성되어 있습니다. 여기서 Sublayer는 Multi-head나 Feed Forward가 될 수 있습니다.   
+<br>
+**Decoder**   
+디코더 또한 $N=6$으로 구성되어있습니다. 디코더는 인코더의 SubLayer에 추가적으로 Masked-Multi-head Self-attention인 SubLayer가 추가적으로 존재합니다.    
 
+#### 3-2.Attention
+모두 vector로 이루어진 Query, Key-Value의 쌍으로 이루어진 집합을 출력으로 나타냅니다. 이 output은 weighted sum으로 계산됩니다.   
+
+##### 3-2.1.Scaled Dot-Product Attention
+<img src="../../../assets/images/paper/2024-07-25-vanilla_transformer/scaled-dot attention.JPG" alt="scaled-dot attention" style="zoom:80%;" />    
+실제 다양한 attention 방법이 존재하는데, 이 논문에서 사양한 attention기법은 단순한 **scaled dot-product attention**입니다.    
+입력은 Dimension이 $d_k$인 Query와 Key, Dimension이 $d_v$인 Value입니다. 여기서 Query는 모든 Key들과 **dot-product**를 계산 후, $\sqrt{d_k}$로 나누어줍니다. 그 후 Softmax 함수를 타주어 Value에 대한 가중치를 얻어줍니다. 방금의 설명을 수식으로 하기에 표현하겠습니다.   
+\begin{aligned} 
+Attention(Q,K,V) = softmax(\frac{Q K^T}{\sqrt{d_k}})V
+\end{aligned}   
+
+그럼 이번에는 Q, K, V가 어떤 것을 의미하는지 알아보겠습니다.   
+Q(Query) : 영향을 받는 vector(물어보는 주체)   
+K(Key) : 영향을 주는 vector(Query에게 물어봄을 당하는 주체)   
+V(Value) : 주는 영향의 가중치 vector(실제 데이터의 값)   
+그리고 $Attention(Q,K,V)$는 value의 가중합으로 계산됩니다. 여기서 가중치는 Query와 연관된 Key의 호환성 함수에 의해 계산됩니다.   
+예시를 들어 설명하면, Query는 어떤 1개의 단어를 나타내는 vector이고, Key는 문장의 모든 단어들에 vector를 쌓아놓은 Matrix입니다. 이 Query와 Key를 Dot-Product($Q K^T$)를 하면, 현재 Query의 1개의 단어가 어떤 단어와 호환성이 큰지에 대한 가중치 vector가 나오게됩니다. 즉, 하기에 계산step에 대해 요약하겠습니다.   
+1. Embedding에 가중치를 곱해 Queyr, Key, Value를 구합니다.   
+2. $Query \times Key = attention \; score$ 에서 attention score의 값이 높을수록 연관성이 높고, 낮을수록 연관성이 낮다고 볼 수 있습니다.
+3. $\sqrt{d_k}$로 나눠준 후, softmax 함수를 거쳐줍니다. 그럼 Query의 어떤 특정 단어가 Key값에 해당하는 어떤 단어들과 연관성이 있는지 확률 분포로 표현됩니다.   
+4. Value와 확률 분포간의 Dot-product를 통해 Query와 Key간의 관련성을 더해준 Attention Value를 구해줍니다.
+
+##### 3-2.2.Multi-Head Attention
+<img src="../../../assets/images/paper/2024-07-25-vanilla_transformer/multi-head attention.JPG" alt="multi-head attention" style="zoom:80%;" />    
+논문에서는 1개의 Attention function을 이용하는 것보다 queries와 keys, values를 linear projection을 통해 중간에 매핑해줘서 각 다른 값들을 입력으로 하는, **여러 개의 Attention function들을 만드는 것이 더 효율적**이라고 합니다. 그 후 나중의 출력들을 **Concatenate**해주고 다시 projection을 시켜 최종 결과를 얻어줍니다.    
+\begin{aligned} 
+MultiHead(Q,K,V) =& Concat(head_1, ..., head_h)W^O \newline  
+where \; head_i =& Attention(QW_i^Q, KW_i^K, VW_i^V)   
+\end{aligned}    
+
+<img src="../../../assets/images/paper/2024-07-25-vanilla_transformer/multi-head attention 2.png" alt="multi-head attention 2" style="zoom:80%;" />    
+논문에서는 $num_heads=8$로 정의를 했습니다. 현재 각 단어는 512차원을 가지는데, 이를 num_heads만큼 나눠주면, $d_k=d_v=d_{model} / num_heads = 64$ 다음과 같이 64차원의 Q,K,V vector로 바꾸어 Attention을 수행해주는 꼴입니다. 즉, **8개로 병렬로 Attention**이 이루어지게됩니다. 이 때, 가중치 행렬 $W^Q, W^K, W^V$는 8개 모두 값이 다릅니다. 이 병렬 Attention을 이용하는 가장 큰 이유는 1개의 Attention만을 이용했을 때, 놓칠 수 있는 부분이 존재할 수 있는데, 이를 8개가 동시에 이루어지면 이 부분을 보완할 수 있다고 생각했기 때문입니다.   
+
+##### 3-2.3.Applications of Attention in our Model
+Transformer는 3 가지 방식으로 Multi-head Attention를 사용합니다:
+1. Encoder-decoder attention : 이전 decoder 레이어에서 오는 query들과 encoder의 출력으로 나오는 memory key, value들과의 attention
+2. Self-attention in encoder : Encoder의 각 위치들은 이전 레이어의 모든 위치들을 참조
+3. Self-attention in decoder : decoder의 각 위치들은 decoder 내의 다른 위치들을 참조할 수 있는데, 이전부터 자신 위치까지만을 참조
+
+#### 3-3.Position-wise Feed-Forward Network
+인코더 및 디코더의 각 계층에 개별적으로 위치하는 attention layer과 함께 fully connected feed-forward network가 사용됩니다.   
+\begin{aligned}   
+FFN(x) = max(0, xxW_1 + b_1)W_2 + b_2
+\end{aligned}   
+
+#### 3-4.Embeddings and Softmax
+다른 sequence transduction 모델과 마찬가지로, input과 ouput token을 embedding layer를 거쳐서 $d_model$차원의 vector로 변환하여 사용합니다.   
+이렇게 생성된 **embedded vector는 semantic한 특성**을 잘 나타납니다.   
+**input embedding 과 output embedding에서 weight matrix를 서로 share하여 사용**합니다. embedding이 어떤 단어를 vector으로 표현하는 것이기 때문에, input과 output간에는 어떤 관련성이 존재해서 weight를 share해도 무방하다고 생각합니다.   
+
+#### 3-5.Positional Encoding
+어떻게 보면 Transformer에서 가장 중요한 부분입니다. Transformer는 RNN이나 CNN없이 **단지 Attention만 이용하기 때문에 시퀀스의 정보를 담아낼 수가 없습니다.** 따라서 별도로 상대적이나 절대적인 이러한 시퀀스 정보를 데이터에 추가해주어야 합니다. 이 역할을 하는 것이 **Positional Encoding**입니다. 이 Position Encoding은 인코더와 디코더 제일 밑에 추가됩니다.    
+실제로 Positional Encoding을 선택할 수 있는 방법은 매우 다양하지만, 이 논문에서는 sine과 cosine 함수를 이용하여 표현했습니다.    
+<img src="../../../assets/images/paper/2024-07-25-vanilla_transformer/positional encoding.JPG" alt="positional encoding" style="zoom:80%;" />    
+\begin{aligned}   
+PE(pos, 2i) =& sin(pos/10000^{2i/ d_{model}}) \newline   
+PE(pos, 2i + 1) =& cos(pos/10000^{2i/ d_{model}}) \newline   
+\end{aligned}   
+
+여기서 pos는 position, i는 dimension입니다. 우선 여기서 sin과 cosin 함수를 사용한 이유에 대해 알아보겠습니다.   
+sin과 cosin함수는 주기함수이며, 또한 값이 -1 ~ 1의 값을 가지게 됩니다. 따라서 **의미 정보가 크게 변하지 않고 유지**될 수 있습니다.    
+또한, sin함수의 경우 주기가 20인 경우, 1번째의 위치의 값과 9번째의 위치의 값이 동일해지는 문제가 발생할 수 있습니다. 이를 방지하고자 다양한 주기의 sin과 cosin을 섞어서 사용했습니다. 또한, Position Encoding은 scalar가 아닌 vector이기 때문에, 이 위치 vector 값이 같아지는 것을 방지하기 위해 vector마다 서로 다른 주기의 cosin, sin 함수를 이용하여 표현합니다. 즉, 단어 vector는 각각의 차원마다 서로 다른 위치 vector의 값을 가집니다. 만약, sin을 이용하여 첫번째 차원의 vector값을 채웠는데, 첫번째 차원의 vector들의 값의 차이가 크지 않다면, 두번째 차원의 vector는 cosin을 이용하여 채워주면 됩니다. 근데 여기서 두번째 차원의 vector 또한 값의 차이가 크지 않다면, cosin의 frequency를 이전 sin함수보다 크게 주어 채워주면됩니다. 즉, 이런 방법으로 sin과 cosin의 번갈아가며, frequency도 조절해가며 vector의 값을 채워주면 충분히 서로 다른 position encoding 값을 가질 수 있게됩니다.    
+그 후 position encoding vector와 embeding vector간의 summation을 해주어 시퀀스 정보도 포함되게 해줍니다.    
+ 
