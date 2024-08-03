@@ -15,6 +15,7 @@ toc_sticky: true
 
 2023년 3월 이후 openai의 GPT가 매우 큰 호황을 끌고 있습니다. GPT는 생성형 AI라는 대목으로 큰 관심을 받으며 있으며, 이 GPT의 기본 구조는 Transformer의 구조를 따르고 있습니다. 그 이후 다양한 기업에서 생성형 AI를 연구 후 발표하고 있습니다. 대부분의 생성형 AI는 LLM측에서는 Transformer, vision분야에서는 Diffusion Model를 띄고 있습니다. 이번 절에서는 이 Transformer의 구조와 기존 DeepLearning 모델에서의 어떤 한계점을 돌파하고 어떤 차이점이 있는지에 대해 알아보도록 하겠습니다.   
 - <https://papers.nips.cc/paper_files/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html>    
+
 본 글은 필자의 주관적인 생각이 담겨있으므로 의역 및 오역이 존재할 수 있다는 점 양해 부탁드립니다.   
 
 ---
