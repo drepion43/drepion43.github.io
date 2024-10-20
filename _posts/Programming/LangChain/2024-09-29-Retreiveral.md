@@ -1,6 +1,6 @@
 ---
 title:  "Retrieval"
-categories: test
+categories: LangChain
 tag: [theory, AI, LLM, LangChain]
 toc: true
 author_profile: false
@@ -13,7 +13,7 @@ date: 2024-09-29
 toc_sticky: true
 ---
 
-하기의 내용은 <https://github.com/wikibook/langchain>의 코드의 기반과 랭체인 완벽입문이라는 책의 내용을 토대로 작성되었습니다.   
+하기의 내용은 <a href="https://github.com/wikibook/langchain" target="_blank">LangChain Repository</a>의 코드의 기반과 랭체인 완벽입문이라는 책의 내용을 토대로 작성되었습니다.   
 
 
 # Retrieval란
