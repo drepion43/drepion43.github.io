@@ -1,13 +1,13 @@
 ---
-title:  "LangChain이란"
+title:  "LangChain과 chain이란"
 categories: LangChain
-tag: [theory, AI, LLM, LangChain]
+tag: [theory, AI, LLM, LangChain, chain]
 toc: true
 author_profile: false
 sidebar:
     nav: "docs"
 use_math: true
-excerpt: Retrieval
+excerpt: chain
 comments: true
 date: 2024-09-25
 toc_sticky: true
@@ -51,6 +51,7 @@ Chain의 구성요소는 하기와 같습니다.
 
 <br>
 그럼 이번에 간단하 ChatPrompt를 받아 답변하는 Chain을 구성한 예시에 대해 알아보겠습니다.   
+
 ```python
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import OpenAI
@@ -78,3 +79,40 @@ StrOutputParser는 모델의 출력을 문자열 형태로 파싱하여 최종 �
 
 
 ## Multi-Chain
+상기에 말했던 chain들을 여러개 만드는 것도 가능합니다. 이 chain들을 연결하거나 복합적으로 이용하는 방법이 바로 **Multi-Chain**입니다. 각기 다른 목적을 가진 여러 체인을 조합하여, 입력 데이터를 다양한 방식으로 처리하고 최종적인 결과를 도출할 수 있도록 합니다.
+<br>
+우선 예제부터 확인해보겠습니다.   
+
+```python
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_openai import OpenAI
+from langchain_core.output_parsers import StrOutputParser
+
+llm = OpenAI(base_url="http://127.0.0.1:1234/v1", api_key="meta-llama-3.1-8b-instruct")
+
+# 한국어 번역 chain
+prompt1 = ChatPromptTemplate.from_template("translates {korean_word} to English.")
+# oxford chain
+prompt2 = ChatPromptTemplate.from_template(
+    "explain {english_word} using oxford dictionary to me in Korean."
+)
+
+output_parser = StrOutputParser()
+
+# 1번 chain
+chain1 = prompt1 | llm | StrOutputParser()
+
+print(chain1.invoke({"korean_word":"미래"}))
+
+# 2번 chain
+chain2 = (
+    {"english_word": chain1}
+    | prompt2
+    | llm
+    | StrOutputParser()
+)
+
+print(chain2.invoke({"korean_word":"미래"}))
+```
+
+1번 체인은 한국어를 영어로 변역해주는 역할을 하는 체인입니다. 2번 체인은 그 영어 단어를 oxford 사전을 이용하여 설명해주는 역할을 하는 체인입니다. 상기와 같은식으로 각기 다른 것ㅇ르 수행하는 2개의 chain을 묶어줄 수 있습니다.   
