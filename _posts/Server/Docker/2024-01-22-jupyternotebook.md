@@ -48,7 +48,7 @@ Ubuntu의 포트 30000과 컨테이너 간의 연결이 -p 8888:30000을 의미�
 docker run \
         -d \
         --gpus all \
-        -p 8888:30000 \
+        -p 30000:8888 \
         --name tensorflow_gpu \
         tensorflow/tensorflow:latest-gpu-jupyter \
         jupyter notebook \
