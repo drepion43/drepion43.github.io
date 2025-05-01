@@ -112,5 +112,6 @@ CMD python /app/app.py
 ```
 <br>
 
-before과 after를 비교해보시면 RUN make /app 과 RUN rm -r $HOME/.cache을 한 줄에 합치거나 안합친 것의 차이만 존재합니다. 이는 만약 before과 같이 작성을 한다면, RUN make /app Layer와 RUN rm -r $HOME/.cache Layer가 모두 생성됩니다. 즉, 5번 Layer에서 Cache를 삭제하더라도 4번 Layer에서는 Cache가 남아있게됩니다. 하지만 이를 RUN make /app && rm -r $HOME/.cache 이렇게 묶어서 작성한 after Dockerfile의 경우에는 4번 Layer에서 Cache도 한번에 지우기 때문에 Cache 데이터가 Image Layer 어디에도 존재하지 않게됩니다. 따라서 after로 생성한 Image가 용량도 더 작아질 것 입니다.   
+before과 after를 비교해보시면 "RUN make /app" 과 "RUN rm -r HOME/.cache"을 한 줄에 합치거나 안합친 것의 차이만 존재합니다. 이는 만약 before과 같이 작성을 한다면,    
+"RUN make /app" Layer와 "RUN rm -r HOME/.cache Layer"가 모두 생성됩니다. 즉, 5번 Layer에서 Cache를 삭제하더라도 4번 Layer에서는 Cache가 남아있게됩니다. 하지만 이를 "RUN make /app \&& rm -r HOME/.cache" 이렇게 묶어서 작성한 after Dockerfile의 경우에는 4번 Layer에서 Cache도 한번에 지우기 때문에 Cache 데이터가 Image Layer 어디에도 존재하지 않게됩니다. 따라서 after로 생성한 Image가 용량도 더 작아질 것 입니다.   
 이런식으로 Dockerfile를 효율적으로 작성하면 보다 효율적으로 작게 이미지를 배포할 수 있을 것입니다. 
