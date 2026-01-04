@@ -95,6 +95,35 @@
                     {% endif %}
                 {% endfor %}
             </ul>
+        <span class="nav__sub-title">Books</span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "MLOps" %}
+                        <li><a href="/categories/MLops" class="">MLOps({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "GitOps" %}
+                        <li><a href="/categories/GitOps" class="">GitOps({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Infra" %}
+                        <li><a href="/categories/Infra" class="">Infra({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "DataEngineer" %}
+                        <li><a href="/categories/DataEngineer" class="">Data Engineer({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         <span class="nav__sub-title">Programming</span>
             <ul>
                 {% for category in site.categories %}
