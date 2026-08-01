@@ -1,7 +1,7 @@
 ---
 title:  "Claude Code 설치 방법(Windows/Linux) 정리"
-categories: ClaudeCode
-tag: [Claude Code, CLI, Anthropic, Windows, Linux, 설치]
+categories: CodingAgent
+tag: [CodingAgent, Claude Code, Anthropic, Windows, Linux, 설치]
 toc: true
 author_profile: false
 sidebar:
