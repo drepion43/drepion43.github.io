@@ -38,7 +38,7 @@ Base Image를 가지고 온 후, 필요한 환경 세팅을 한번에 진행 후
 여기서 또 재미있는 점이 있습니다. Docker는 build 프로세스 중에 **이전 build에 사용했던 Layer를 Cache에 저장**함으로써 build의 시간과 자원을 절약하는 방법을 채택하고 있습니다. 즉, 변경되지 않은 layer는 다시 다운을 하거나 build를 하지 않는다는 것입니다. 이 부분은 직접 같은 이미지를 build해볼 시, 동인한 layer경우 매운 빠른 시간에 이미지를 pull하는 것을 경험해보신적이 있습니다. 이런 이유가 Cache에 저장을 하고 있음으로써 가능한 것 입니다.   
 
 ## Dockerfile 작성
-이번에는 간단하게 Dockerfile의 작성에 사용되는 대표적인 명령어 몇개들을 살펴보겠습니다. <a href="https://docs.docker.com/reference/dockerfile/" target="_blank">Dockerfile 공식문서서</a>에 접속하시면 더 자세한 CLI들을 확인해볼 수 있습니다.   
+이번에는 간단하게 Dockerfile의 작성에 사용되는 대표적인 명령어 몇개들을 살펴보겠습니다. <a href="https://docs.docker.com/reference/dockerfile/" target="_blank">Dockerfile 공식문서</a>에 접속하시면 더 자세한 CLI들을 확인해볼 수 있습니다.   
 - FROM : Base Image 설정
     - Dockerfile을 작성할 때 반드시 필요한 요소입니다. 즉, 어떤 새로운 customization되는 이미지를 만들기 위해 기본이 되는 Image를 의미합니다.   
 - WORKDIR : 작업 디렉토리 설정

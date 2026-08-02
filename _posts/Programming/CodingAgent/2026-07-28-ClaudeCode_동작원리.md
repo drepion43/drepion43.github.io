@@ -9,13 +9,13 @@ sidebar:
 use_math: true
 excerpt: Claude Code가 내부적으로 어떻게 동작하는지, 에이전트 루프(Agent Loop) 구조를 중심으로 정리
 comments: true
-date: 2026-08-02
+date: 2026-07-28
 toc_sticky: true
 ---
 
 ## 들어가며
 
-이전 글에서는 [Claude Code 설치 방법](2026-08-01-ClaudeCode_Install)을 다뤘습니다. 이번 글에서는 한 단계 더 들어가서, Claude Code가 터미널에서 "이 버그 고쳐줘" 같은 한 줄 요청을 받았을 때 내부적으로 어떤 과정을 거쳐 파일을 읽고, 코드를 고치고, 테스트를 돌리는지를 다루겠습니다. 핵심은 **에이전트 루프(Agent Loop)** 라는 구조입니다.
+이전 글에서는 [Claude Code 설치 방법](ClaudeCode_Install)을 다뤘습니다. 이번 글에서는 한 단계 더 들어가서, Claude Code가 터미널에서 "이 버그 고쳐줘" 같은 한 줄 요청을 받았을 때 내부적으로 어떤 과정을 거쳐 파일을 읽고, 코드를 고치고, 테스트를 돌리는지를 다루겠습니다. 핵심은 **에이전트 루프(Agent Loop)** 라는 구조입니다.
 
 ## 왜 "에이전트"인가
 
