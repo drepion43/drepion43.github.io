@@ -9,7 +9,7 @@ sidebar:
 use_math: false
 excerpt: Windows와 Linux 환경에서 Claude Code CLI를 설치하고 초기 설정하는 방법 정리
 comments: true
-date: 2026-08-01
+date: 2026-07-27
 toc_sticky: true
 ---
 
