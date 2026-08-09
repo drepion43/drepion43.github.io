@@ -9,7 +9,7 @@ sidebar:
 use_math: false
 excerpt: Claude Code의 Plugins가 무엇인지 개념부터, 만드는 법, CLI에서 설치/관리하는 법까지 정리
 comments: true
-date: 2026-08-09
+date: 2026-08-04
 toc_sticky: true
 ---
 
