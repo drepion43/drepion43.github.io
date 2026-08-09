@@ -9,7 +9,7 @@ sidebar:
 use_math: false
 excerpt: 지금까지 다룬 Claude Code 기능들을 새 프로젝트에 스프린트 단위로 조합해서 적용하는 실전 가이드
 comments: true
-date: 2026-08-09
+date: 2026-08-06
 toc_sticky: true
 ---
 
