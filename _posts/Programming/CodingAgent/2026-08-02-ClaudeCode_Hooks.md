@@ -9,7 +9,7 @@ sidebar:
 use_math: false
 excerpt: Claude Code의 Hooks(훅) 기능이 무엇이고, 이벤트/훅 타입/종료 코드는 어떻게 동작하는지, 실전 예제와 함께 정리
 comments: true
-date: 2026-08-09
+date: 2026-08-02
 toc_sticky: true
 ---
 

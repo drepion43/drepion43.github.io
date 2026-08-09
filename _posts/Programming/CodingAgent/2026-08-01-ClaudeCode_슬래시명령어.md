@@ -1,5 +1,5 @@
 ---
-title:  "Claude Code '/' 슬래시 명령어 정리"
+title:  "Claude Code '/' 명령어 정리"
 categories: CodingAgent
 tag: [CodingAgent, Claude Code, Slash Command, Anthropic]
 toc: true
@@ -9,7 +9,7 @@ sidebar:
 use_math: false
 excerpt: Claude Code CLI에서 '/'로 시작하는 내장 슬래시 명령어를 카테고리별로 정리하고 언제 사용하면 좋은지 설명
 comments: true
-date: 2026-08-09
+date: 2026-08-01
 toc_sticky: true
 ---
 
