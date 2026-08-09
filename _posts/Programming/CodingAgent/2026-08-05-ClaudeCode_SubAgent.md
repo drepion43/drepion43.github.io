@@ -9,7 +9,7 @@ sidebar:
 use_math: false
 excerpt: Claude Code의 SubAgent가 무엇인지 개념부터, CLI에서 직접 만드는 법, 실전 예시까지 정리
 comments: true
-date: 2026-08-09
+date: 2026-08-05
 toc_sticky: true
 ---
 
